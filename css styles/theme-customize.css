@@ -1,0 +1,277 @@
+/*在原主题基础上修改的CSS样式*/
+@font-face {
+    font-weight: 400;
+    font-style: normal;
+    font-family: riziyunxiyuangb;
+    src: url(https://static.littlesecret.cn/fonts/riziyunxiyuangb-subfont.ttf) format("truetype")
+}
+
+@font-face {
+    font-weight: 400;
+    font-style: normal;
+    font-family: hanyixiari;
+    src: url(https://static.littlesecret.cn/fonts/HYXiaRiTiW-subfont.ttf) format("truetype")
+}
+
+body {
+    background: url(https://static.littlesecret.cn/images/backgrounds/117e571107cef9e447c06780b1bdae5a.jpg)no-repeat left fixed;
+    background-size: cover
+}
+
+body.home #masthead {
+    height: 100vh;
+    background: url(https://static.littlesecret.cn/images/backgrounds/4f36cba5de404d1f9ee6acb1c1fc8389.png)no-repeat center;
+    background-size: cover
+}
+
+#header-image-main-inside,
+body.home #header-image-main {
+    height: 100%;
+    max-height: 100% !important
+}
+
+body.home #masthead .header-image {
+    display: none
+}
+
+body.home #header-page-title {
+    bottom: 30%;
+    -webkit-animation: unset;
+    animation: unset
+}
+
+body.home .entry-title {
+    font-family: riziyunxiyuangb
+}
+
+.header-fixed#site-header-main,
+.header-fixed#site-header-main #access::after {
+    box-shadow: none;
+    -webkit-transition: unset;
+    transition: unset
+}
+
+#access {
+    transition: all 1s linear
+}
+
+#site-header-main:not(.header-fixed) #access {
+    opacity: 0;
+    transform: translateX(20px)
+}
+
+#site-header-main:not(.header-fixed) #access:hover {
+    opacity: 1;
+    transform: translateX(0)
+}
+
+#main article figcaption::selection,
+#main article p::selection {
+    background: rgb(255, 181, 161);
+    color: #fff
+}
+
+#site-title a {
+    color: #ffb5a1 !important;
+    font-weight: 700;
+    font-size: 22px;
+    font-family: hanyixiari !important
+}
+
+.widget-container {
+    margin-bottom: 1rem
+}
+
+#access #prime_nav>.menu-item>a,
+#site-wrapper {
+    cursor: url(https://static.littlesecret.cn/images/icons/2439308f57eaed1bffe8d4aaeb8349ea2.ico), auto
+}
+
+#content>#colophon {
+    margin: 0 auto;
+    max-width: 1300px;
+    background: 0 0
+}
+
+#content>#colophon>#colophon-inside {
+    margin: 0 auto;
+    width: calc(100% - 640px);
+    background: #ffff
+}
+
+#header-page-title-inside {
+    background: 0 0;
+    box-shadow: none
+}
+
+#header-page-title-inside>.entry-title {
+    text-align: left;
+    text-shadow: 5px 5px 10px #6e6e6e;
+    font-weight: bolder
+}
+
+body.home #header-page-title-inside>.entry-title {
+    text-align: center
+}
+
+#header-page-title-inside>#breadcrumbs-container,
+#header-page-title-inside>.entry-title+div {
+    text-align: left
+}
+
+#header-page-title-inside>.byline,
+#header-page-title-inside>.entry-meta span:not(.bl_categ) * {
+    color: #fff;
+    text-shadow: 0 0 5px #000;
+    font-weight: 400
+}
+
+#header-page-title-inside>.byline {
+    font-size: 1.5rem;
+    font-family: hanyixiari
+}
+
+#header-page-title-inside>.entry-meta span:not(.bl_categ) * {
+    font-size: 1.1rem;
+    font-family: Raleway
+}
+
+#header-page-title-inside>.entry-meta span.bl_categ,
+#header-page-title-inside>.entry-meta>.author>em,
+img#wpstats {
+    display: none
+}
+
+#breadcrumbs-container {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background: rgba(0, 0, 0, .6)
+}
+
+#header-page-title-inside>.entry-meta>.author>a::after {
+    content: " ·"
+}
+
+.header-fixed#site-header-main {
+    box-shadow: 0 0 30px -10px rgba(0, 0, 0, .5)
+}
+
+.widget-container:not(#custom_html-38) {
+    padding: 10px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .3)
+}
+
+.widget-container.widget_media_image {
+    text-align: center
+}
+
+article.hentry .post-thumbnail-container {
+    margin: 0 auto;
+    width: 90%
+}
+
+#access>div>ul>li>a,
+#site-header-main:not(.header-fixed) #access ul.sub-menu li a {
+    color: #fff
+}
+
+#site-header-main:not(.header-fixed) #access ul.sub-menu li a:hover {
+    color: #ffb5a1
+}
+
+.anima-over-menu #site-header-main:not(.header-fixed) {
+    background: unset
+}
+
+#site-header-main:not(.header-fixed) #access ul.sub-menu li a {
+    background: rgba(0, 0, 0, .3)
+}
+
+#access>div>ul>li>ul {
+    background: 0 0
+}
+
+.widget-container#custom_html-51 {
+    padding: 0
+}
+
+.widget-container#custom_html-50 {
+    padding: 0
+}
+
+.entry-content blockquote::before {
+    color: #fe9600
+}
+
+#site-header-main {
+    border-bottom: none
+}
+
+#breadcrumbs-container #breadcrumbs-nav {
+    color: #ddd;
+    font-style: italic
+}
+
+footer#footer {
+    display: none
+}
+
+@media (max-width:1152px) {
+    #access::after {
+        background: unset
+    }
+
+    #content>#colophon>#colophon-inside {
+        width: 100%;
+        transform: unset
+    }
+
+    #content>#colophon>#colophon-inside>#custom_html-38 {
+        margin-right: 0;
+        width: 100%
+    }
+
+    .widget-container {
+        padding: 1rem !important
+    }
+
+    article.hentry .post-thumbnail-container {
+        margin: 0 auto;
+        width: 60%
+    }
+
+    .widget-container#custom_html-51 {
+        padding: 0 !important
+    }
+
+    .widget-container#custom_html-50 {
+        padding: 0 !important
+    }
+}
+
+@media (min-width:1024px) {
+    .jetpack-mobile-link {
+        display: none
+    }
+}
+
+@media (max-width:1024px) {
+    #site-text {
+        display: none
+    }
+
+    #more-functionstip {
+        display: none
+    }
+}
+
+@media (max-width:800px) {
+    #site-text {
+        display: block
+    }
+
+    article.hentry .post-thumbnail-container {
+        width: 80%
+    }
+}

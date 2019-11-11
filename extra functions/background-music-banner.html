@@ -1,0 +1,75 @@
+<!--首页右上方背景音乐横幅-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>背景音乐横幅</title>
+</head>
+
+<body>
+    <audio loop></audio>
+    <div id="confirm-play-bgm" class="hide">
+        <span>即将播放背景音乐，点击“播放”确认，点击“取消”关闭</span>
+        <div>
+            <div style="margin-right: 5px" onclick="playStart()">播放</div>
+            <div onclick="playCancel()">取消</div>
+        </div>
+    </div>
+    <style>
+        #confirm-play-bgm {
+            display: inline-block;
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            background: #fff;
+            text-align: center;
+            border: 1px solid #999;
+            border-left: 5px solid #ffB5A1;
+            padding: 5px;
+            font-weight: 200;
+            font-size: 0.8rem;
+            box-shadow: 3px 3px 3px #ccc;
+            transition: transform 1s linear;
+            z-index: 200
+        }
+
+        #confirm-play-bgm>span {
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #confirm-play-bgm>div>div {
+            cursor: pointer;
+            border: none;
+            color: #ffB5A1;
+            padding: 3px 4px;
+            border-radius: 3px;
+            display: inline-block;
+            line-height: 1.2
+        }
+
+        #confirm-play-bgm>div>div:hover {
+            background: #ffB5A1;
+            color: #fff;
+        }
+
+        #confirm-play-bgm.hide {
+            transform: translateX(calc(100% + 10px));
+        }
+    </style>
+    <script>
+        window.onload = () => document.getElementById("confirm-play-bgm").setAttribute("class", '');
+        var playStart = () => {
+            var au = document.querySelector("audio");
+            au.src = "https://static.littlesecret.cn/sounds/20191021103956.mp3";
+            au.play();
+            document.getElementById("confirm-play-bgm").setAttribute("class", "hide");
+        }
+        var playCancel = () => document.getElementById("confirm-play-bgm").setAttribute("class", "hide");
+    </script>
+</body>
+
+</html>

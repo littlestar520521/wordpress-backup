@@ -1,0 +1,40 @@
+<!--左侧栏背景音乐控制按钮-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>背景音乐控制器</title>
+</head>
+
+<body>
+    <p>
+        <strong>背景音乐</strong>：《卡农》钢琴版
+        <br> 
+        <strong>演奏</strong>：bilibili@绯绯Feifei
+    </p>
+    <div style="text-align: center;cursor: pointer;">
+        <div class="music-controller" style="display: inline-block;margin-right: 10%;" title="播放" onclick="replay()"><i
+                class="fa fa-play"></i></div>
+        <div class="music-controller" style="display: inline-block;" title="暂停"
+            onclick="document.querySelector('audio').pause();"><i class="fa fa-pause"></i></div>
+    </div>
+    <style>
+        .music-controller:hover {
+            color: #aaa
+        }
+    </style>
+    <script>
+        function replay() {
+            var au = document.querySelector("audio");
+            if (au.src !== "https://static.littlesecret.cn/sounds/20191021103956.mp3") {
+                au.src = "https://static.littlesecret.cn/sounds/20191021103956.mp3";
+            }
+            au.play();
+        }
+    </script>
+</body>
+
+</html>

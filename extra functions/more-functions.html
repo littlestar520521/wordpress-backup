@@ -1,0 +1,179 @@
+<!--右下角更多站点功能，我把“返回顶部”放进去了，同时还有更换壁纸功能-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>更多功能悬浮图片</title>
+</head>
+
+<body>
+    <div id="more-functions-tip">
+        <div class="more-functions-tip-mask" onclick="showList()">更多功能，点我，喵</div>
+    </div>
+    <div id="more-functions-list" class="hide">
+        <div onclick="scrollToTop()" title="回到顶部">顶</div>
+        <div title="更换背景为今日Bing美图" onclick="getLocalBingWallpaper()">B</div>
+    </div>
+    <style>
+        @media(max-width:1024px) {
+            #more-functions-tip {
+                display: none
+            }
+        }
+
+        #more-functions-tip {
+            position: fixed;
+            background: url(https://static.littlesecret.cn/images/backgrounds/120f7c15ae79d2664532befb25c213042.png) no-repeat center;
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            border-radius: 5px;
+            right: 10px;
+            bottom: 10px
+        }
+
+        #more-functions-tip>.more-functions-tip-mask {
+            width: inherit;
+            height: inherit;
+            text-align: center;
+            font-size: .8rem;
+            background: rgba(0, 0, 0, .5);
+            color: #fff;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity .5s linear;
+            cursor: pointer
+        }
+
+        #more-functions-tip>.more-functions-tip-mask span {
+            display: block
+        }
+
+        #more-functions-tip:hover>.more-functions-tip-mask {
+            opacity: 1
+        }
+
+        #more-functions-list {
+            position: fixed;
+            bottom: 10px;
+            right: 120px;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 5px;
+            font-weight: 200;
+            font-size: .8rem;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 5px
+        }
+
+        #more-functions-list.hide {
+            display: none
+        }
+
+        #more-functions-list>div {
+            cursor: pointer;
+            border: 1px solid #ffb5a1;
+            color: #ffb5a1;
+            width: 30px;
+            height: 30px;
+            line-height: 28px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            background: #fff
+        }
+
+        #more-functions-list>div:first-child {
+            margin-bottom: 5px
+        }
+
+        #more-functions-list>div:hover {
+            background: #ffb5a1;
+            color: #fff
+        }
+    </style>
+    <script>
+        function showList() {
+            var list = document.getElementById("more-functions-list");
+            var tip = document.querySelector(".more-functions-tip-mask");
+            if (list.getAttribute("class") === "hide") {
+                list.setAttribute("class", "");
+                tip.innerHTML = "点我关闭菜单，喵";
+            } else {
+                list.setAttribute("class", "hide");
+                tip.innerHTML = "更多功能，点我，喵";
+            }
+        }
+
+        function scrollToTop() {
+            jQuery("html,body").animate({
+                scrollTop: 0
+            }, 500);
+        }
+
+        function getLocalBingWallpaper() {
+            var local = localStorage.getItem("today-bing-image");
+            if (local) {
+                var localObj = JSON.parse(local);
+                if (new Date(localObj.time).getDate() !== new Date().getDate()) {
+                    getBingWallpaper();
+                } else {
+                    document.body.style.backgroundImage = `url(${localObj.url})`;
+                    document.body.style.backgroundPosition = "center bottom";
+                    jQuery('main').css({
+                        'background': 'rgba(255,255,255,0.3)'
+                    });
+                    jQuery('article').css({
+                        'background': 'transparent'
+                    });
+                }
+            } else {
+                getBingWallpaper();
+            }
+        }
+        async function getBingWallpaper() {
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "https://api.littlesecret.cn/apis/bingwallpaper.ashx");
+                xhr.responseType = "text";
+                xhr.onload = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        resolve(xhr.responseText);
+                    } else {
+                        reject("xhr request has no valid response");
+                    }
+                };
+                xhr.onerror = function () {
+                    reject("there was a network error")
+                };
+                xhr.send();
+            }).then(function (result) {
+                document.body.style.backgroundImage = `url(${result})`;
+                document.body.style.backgroundPosition = "center bottom";
+                jQuery('main').css({
+                    'background': 'rgba(255,255,255,0.3)'
+                });
+                jQuery('article').css({
+                    'background': 'transparent'
+                });
+                var store = {
+                    url: result,
+                    time: new Date().getTime()
+                };
+                localStorage.setItem("today-bing-image", JSON.stringify(store));
+            }).catch(function (err) {
+                console.log(`Get image failed for the error '${err}'`);
+            });
+        }
+    </script>
+</body>
+
+</html>
