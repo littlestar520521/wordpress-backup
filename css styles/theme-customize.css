@@ -3,14 +3,16 @@
     font-weight: 400;
     font-style: normal;
     font-family: riziyunxiyuangb;
-    src: url(https://static.littlesecret.cn/fonts/riziyunxiyuangb-subfont.ttf) format("truetype")
+    src: url(https://static.littlesecret.cn/fonts/riziyunxiyuangb-subfont.ttf) format("truetype");
+    font-display: swap;
 }
 
 @font-face {
     font-weight: 400;
     font-style: normal;
     font-family: hanyixiari;
-    src: url(https://static.littlesecret.cn/fonts/HYXiaRiTiW-subfont.ttf) format("truetype")
+    src: url(https://static.littlesecret.cn/fonts/HYXiaRiTiW-subfont.ttf) format("truetype");
+    font-display: swap;
 }
 
 body {
