@@ -13,3 +13,9 @@ remove_action( 'wp_head', 'feed_links_extra', 3 );
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+
+
+/*jQuery加速*/
+wp_deregister_script('jquery'); 
+wp_register_script('jquery', 'https://cdn.jsdelivr.net/gh/jquery/jquery@1.12.4/dist/jquery.min.js', false, '1.12.4'); 
+wp_enqueue_script('jquery'); 
