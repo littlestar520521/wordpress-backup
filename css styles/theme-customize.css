@@ -30,7 +30,7 @@ body.home #header-page-title {
     animation: unset
 }
 
-body.home .entry-title {
+body.home h1.entry-title {
     font-family: riziyunxiyuangb
 }
 
@@ -58,7 +58,7 @@ body.home .entry-title {
     opacity: 1;
     transform: translateX(0)
 }
-
+#main article figcaption{text-align:center;}
 #main article figcaption::selection,
 #main article p::selection {
     background: rgb(255, 181, 161);

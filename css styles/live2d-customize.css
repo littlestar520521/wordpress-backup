@@ -28,7 +28,8 @@
     position: absolute;
     font-family: Raleway;
     text-shadow: 0 0 3px #ccc;
-    border: 1px solid #ffb5a1
+    border: 1px solid #ffb5a1;
+    box-sizing: inherit;
 }
 
 .waifu-tool {
