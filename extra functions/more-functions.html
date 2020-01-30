@@ -100,6 +100,29 @@
             background: #ffb5a1;
             color: #fff
         }
+
+        body.bingwallpaper-bg-start {
+            background-position-x: 100vw;
+        }
+
+        body.bingwallpaper-bg-end {
+            background-position-x: center;
+        }
+
+        .bingwallpaper-bg-loading {
+            position: fixed;
+            width: 100px;
+            height: 62px;
+            background: #ffb5a1;
+            border-radius: 10px;
+            font-size: 36px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: calc(50% - 31px);
+            left: calc(50% - 50px)
+        }
     </style>
     <script>
         function showList() {
@@ -117,9 +140,9 @@
         function scrollToTop() {
             jQuery("html,body").animate({
                 scrollTop: 0
-            }, 500);
+            }, 1000);
         }
-
+        //TODO: Add a load buffer to avoid displaying white blank on screen before the image is downloaded
         function getLocalBingWallpaper() {
             var local = localStorage.getItem("today-bing-image");
             if (local) {
@@ -127,13 +150,32 @@
                 if (new Date(localObj.time).getDate() !== new Date().getDate()) {
                     getBingWallpaper();
                 } else {
-                    document.body.style.backgroundImage = `url(${localObj.url})`;
-                    document.body.style.backgroundPosition = "center bottom";
-                    jQuery('main').css({
-                        'background': 'rgba(255,255,255,0.3)'
-                    });
-                    jQuery('article').css({
-                        'background': 'transparent'
+                    var bodyRef = document.body;
+                    var temp_loading = document.createElement("div");
+                    temp_loading.setAttribute("class", "bingwallpaper-bg-loading");
+                    temp_loading.innerHTML = "<i class='fa fa-spinner fa-pulse'></i>"
+                    document.body.appendChild(temp_loading);
+                    var temp_img = document.createElement("img");
+                    temp_img.setAttribute("id", "temp-img-loader");
+                    temp_img.setAttribute("src", localObj.url);
+                    temp_img.setAttribute("width", 0);
+                    temp_img.setAttribute("height", 0);
+                    temp_img.addEventListener("load", function () {
+                        document.querySelector(".bingwallpaper-bg-loading").remove();
+                        if (!bodyRef.style.transition) {
+                            bodyRef.style.transition = "background-position-x 2s linear";
+                        }
+                        bodyRef.classList.add("bingwallpaper-bg-start");
+                        setTimeout(function () {
+                            bodyRef.classList.add("bingwallpaper-bg-end");
+                            bodyRef.style.backgroundImage = `url(${localObj.url})`;
+                        }, 2000);
+                        jQuery('main').css({
+                            'background': 'rgba(255,255,255,0.3)'
+                        });
+                        jQuery('article').css({
+                            'background': 'transparent'
+                        });
                     });
                 }
             } else {
@@ -142,8 +184,12 @@
         }
         async function getBingWallpaper() {
             return new Promise(function (resolve, reject) {
+                var temp_loading = document.createElement("div");
+                temp_loading.setAttribute("class", "bingwallpaper-bg-loading");
+                temp_loading.innerHTML = "<i class='fa fa-spinner fa-pulse'></i>"
+                document.body.appendChild(temp_loading);
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "https://api.littlesecret.cn/apis/bingwallpaper.ashx");
+                xhr.open("GET", "https://api.littlesecret.cn/wordpress/bingwallpaper");
                 xhr.responseType = "text";
                 xhr.onload = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -157,23 +203,39 @@
                 };
                 xhr.send();
             }).then(function (result) {
-                document.body.style.backgroundImage = `url(${result})`;
-                document.body.style.backgroundPosition = "center bottom";
-                jQuery('main').css({
-                    'background': 'rgba(255,255,255,0.3)'
+                var temp_img = document.createElement("img");
+                temp_img.setAttribute("id", "temp-img-loader");
+                temp_img.setAttribute("src", result);
+                temp_img.setAttribute("width", 0);
+                temp_img.setAttribute("height", 0);
+                temp_img.addEventListener("load", function () {
+                    document.querySelector(".bingwallpaper-bg-loading").remove();
+                    var bodyRef = document.body;
+                    if (!bodyRef.style.transition) {
+                        bodyRef.style.transition = "background-position-x 2s linear";
+                    }
+                    bodyRef.classList.add("bingwallpaper-bg-start");
+                    setTimeout(function () {
+                        bodyRef.classList.add("bingwallpaper-bg-end");
+                        bodyRef.style.backgroundImage = `url(${result})`;
+                    }, 2000);
+                    jQuery('main').css({
+                        'background': 'rgba(255,255,255,0.3)'
+                    });
+                    jQuery('article').css({
+                        'background': 'transparent'
+                    });
+                    var store = {
+                        url: result,
+                        time: new Date().getTime()
+                    };
+                    localStorage.setItem("today-bing-image", JSON.stringify(store));
                 });
-                jQuery('article').css({
-                    'background': 'transparent'
-                });
-                var store = {
-                    url: result,
-                    time: new Date().getTime()
-                };
-                localStorage.setItem("today-bing-image", JSON.stringify(store));
             }).catch(function (err) {
                 console.log(`Get image failed for the error '${err}'`);
             });
         }
+    
     </script>
 </body>
 
