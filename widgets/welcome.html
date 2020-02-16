@@ -1,51 +1,63 @@
 <!--左侧栏开头的欢迎语-->
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>欢迎语Widget</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>欢迎语Widget</title>
-</head>
-
-<body>
-    <div>
-        <div style="text-align:center;width:100%;padding:10px" class="widget-frontcolor-changes">
-            <img src="https://www.littlemeteor.me/wp-content/uploads/2019/11/2c9883c0c3d7b75e0a3feee8354ddd9b_optimized.png"
-                style="width: 100px;height:100px;margin:0 auto" alt="small paper aircraft">
-            <div id="time-period-greeting" style="margin-bottom: 5px"></div>
-            <div style="font-size: 15px">愿你心有阳光，无惧黑暗；愿你初心不负，历尽千帆，归来仍旧是少年</div>
+    <body>
+        <div>
+            <div
+                style="text-align:center;width:100%;padding:10px"
+                class="widget-frontcolor-changes"
+            >
+                <img
+                    src="https://www.littlemeteor.me/wp-content/uploads/2019/11/2c9883c0c3d7b75e0a3feee8354ddd9b_optimized.png"
+                    style="width: 100px;height:100px;margin:0 auto"
+                    alt="small paper aircraft"
+                />
+                <div id="time-period-greeting" style="margin-bottom: 5px"></div>
+                <div style="font-size: 15px">
+                    愿你心有阳光，无惧黑暗；愿你初心不负，历尽千帆，归来仍旧是少年
+                </div>
+            </div>
         </div>
-    </div>
-    <script>
-        let hour = new Date().getHours();
-        let text;
-        switch (true) {
-            case (hour >= 0 && hour < 6):
-                text = "凌晨好";
-                break;
-            case (hour >= 6 && hour <= 7):
-                text = "早安";
-                break;
-            case (hour > 7 && hour < 11):
-                text = "上午好";
-                break;
-            case (hour >= 11 && hour < 13):
-                text = "中午好";
-                break;
-            case (hour >= 13 && hour < 18):
-                text = "下午好";
-                break;
-            case (hour >= 18 && hour <= 21):
-                text = "晚上好";
-                break;
-            case (hour >= 22 && hour <= 23):
-                text = "晚安";
-                break;
-        }
-        document.getElementById("time-period-greeting").innerHTML = text + "，亲爱的访客";
-    </script>
-</body>
-
+        <script>
+            let hour = new Date().getHours();
+            let text;
+            switch (true) {
+                case hour >= 0 && hour < 6:
+                    text = "凌晨好";
+                    break;
+                case hour >= 6 && hour <= 7:
+                    text = "早安";
+                    break;
+                case hour > 7 && hour < 11:
+                    text = "上午好";
+                    break;
+                case hour >= 11 && hour < 13:
+                    text = "中午好";
+                    break;
+                case hour >= 13 && hour < 18:
+                    text = "下午好";
+                    break;
+                case hour >= 18 && hour <= 21:
+                    text = "晚上好";
+                    break;
+                case hour >= 22 && hour <= 23:
+                    text = "晚安";
+                    break;
+            }
+            document.getElementById("time-period-greeting").innerHTML =
+                text + "，亲爱的访客";
+            if (hour >= 6 && hour < 18) {
+                document.body.classList.add("body-bg-day");
+            }else{
+                document.body.classList.add("body-bg-night");
+            }
+        </script>
+    </body>
 </html>
