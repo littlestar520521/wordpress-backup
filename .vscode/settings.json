@@ -1,0 +1,8 @@
+{
+    "editor.fontFamily": "Consolas",
+    "editor.fontSize": 18,
+    "prettier.tabWidth": 4,
+    "terminal.integrated.fontFamily": "Consolas",
+    "terminal.integrated.fontSize": 16,
+    "timeline.showView": true
+}
