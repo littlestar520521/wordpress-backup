@@ -15,8 +15,9 @@ body.home #masthead {
     background: var(--widget-bg-color);
 }
 .widget-frontcolor-changes {
-    color: unset;
+    color: var(--widget-font-color);
 }
 body {
     --widget-bg-color: unset;
+    --widget-font-color: unset;
 }
