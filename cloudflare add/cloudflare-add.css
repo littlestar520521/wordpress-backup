@@ -20,13 +20,22 @@ body.home #masthead {
 body {
 	--widget-bg-color: unset;
 	--widget-font-color: unset;
+	--widget-title-color: unset;
+	--widget-list-item-color: unset;
+}
+.widget-title {
+	color: var(--widget-title-color);
+}
+.cat-item:not(a),
+#wp-calendar *:not(a) {
+	color: var(--widget-list-item-color);
 }
 a#logo > img {
-    max-height: 60% !important;
-    animation: logo-rotate 4s linear infinite normal;
+	max-height: 60% !important;
+	animation: logo-rotate 4s linear infinite normal;
 }
 #branding .identity + #site-text {
-    margin-left: unset !important;
+	margin-left: unset !important;
 }
 @keyframes logo-rotate {
 	0% {
