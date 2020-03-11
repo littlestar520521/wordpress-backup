@@ -3,21 +3,45 @@
 * 由Cloudflare app额外添加
 */
 .body-bg-day {
-    background-image: url(https://static.littlesecret.cn/images/backgrounds/love/t0143fee64924dde337_optimized.jpg);
+	background-image: url(https://static.littlesecret.cn/images/backgrounds/love/t0143fee64924dde337_optimized.jpg);
 }
 .body-bg-night {
-    background-image: url(https://static.littlesecret.cn/images/backgrounds/love/292765_001_optimized.jpg);
+	background-image: url(https://static.littlesecret.cn/images/backgrounds/love/292765_001_optimized.jpg);
 }
 body.home #masthead {
-    background-image: url(https://static.littlesecret.cn/images/backgrounds/love/CBF55731-88FA-44E9-B700-F806797B3915_optimized.jpeg);
+	background-image: url(https://static.littlesecret.cn/images/backgrounds/love/CBF55731-88FA-44E9-B700-F806797B3915_optimized.jpeg);
 }
 .widget-container:not(#custom_html-4) {
-    background: var(--widget-bg-color);
+	background: var(--widget-bg-color);
 }
 .widget-frontcolor-changes {
-    color: var(--widget-font-color);
+	color: var(--widget-font-color);
 }
 body {
-    --widget-bg-color: unset;
-    --widget-font-color: unset;
+	--widget-bg-color: unset;
+	--widget-font-color: unset;
+}
+a#logo > img {
+    max-height: 60% !important;
+    animation: logo-rotate 4s linear infinite normal;
+}
+#branding .identity + #site-text {
+    margin-left: unset !important;
+}
+@keyframes logo-rotate {
+	0% {
+		transform: rotate(0);
+	}
+	25% {
+		transform: rotate(-10deg);
+	}
+	50% {
+		transform: rotate(0);
+	}
+	75% {
+		transform: rotate(10deg);
+	}
+	100% {
+		transform: rotate(0);
+	}
 }
