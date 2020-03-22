@@ -4,5 +4,6 @@
     "prettier.tabWidth": 4,
     "terminal.integrated.fontFamily": "Consolas",
     "terminal.integrated.fontSize": 16,
-    "timeline.showView": true
+    "timeline.showView": true,
+    "editor.minimap.enabled": false
 }

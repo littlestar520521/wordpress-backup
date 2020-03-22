@@ -26,10 +26,12 @@ main {
 	bottom: 2px;
 	right: -2px;
 	opacity: 1;
+	/*
 	--main-font-color: coral;
 	--main-bg-color: beige;
 	--main-border-shadow-color: lightcoral;
 	--main-bg-hover-color: lightpink;
+	*/
 	--tb-bottom: 162px;
 }
 .customize-toolbar-icon-func.customize-toolbar-icon-clicking i {
@@ -89,7 +91,7 @@ main {
 	}
 }
 .customize-toolbar-core {
-	background: url(../../assets/bad27a027fff5ca54756c7da2e6cc756_optimized.png)
+	background: url(../assets/bad27a027fff5ca54756c7da2e6cc756_optimized.png)
 		no-repeat center;
 	background-size: cover;
 	width: 160px;
