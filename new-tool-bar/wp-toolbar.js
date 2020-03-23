@@ -94,6 +94,8 @@ CustomizeToolBar.height = 200;
 		return;
 	});
 	//switch background wallpaper to bing image
+	var bingBtn = CustomizeToolBar.domList.buttonDomList.bingImageButton;
+	var bingTip = bingBtn.nextElementSibling;
 	function switchPicAnimation() {
 		CustomizeToolBar.toggleCssClass(
 			CustomizeToolBar.domList.corePicDom,
@@ -121,6 +123,7 @@ CustomizeToolBar.height = 200;
 					setTimeout(function() {
 						bodyRef.classList.add('bingwallpaper-bg-end');
 						bodyRef.style.backgroundImage = `url(${localObj.url})`;
+						bingTip.innerHTML = '换回原来壁纸';
 						switchPicAnimation();
 					}, 2000);
 				});
@@ -163,6 +166,7 @@ CustomizeToolBar.height = 200;
 					setTimeout(function() {
 						bodyRef.classList.add('bingwallpaper-bg-end');
 						bodyRef.style.backgroundImage = `url(${result})`;
+						bingTip.innerHTML = '换回原来壁纸';
 						switchPicAnimation();
 					}, 2000);
 					var store = {
@@ -179,13 +183,20 @@ CustomizeToolBar.height = 200;
 				console.log(`Get image failed for the error '${err}'`);
 			});
 	}
-	CustomizeToolBar.domList.buttonDomList.bingImageButton.addEventListener(
-		'click',
-		function(e) {
-			getLocalBingWallpaper();
-			e.preventDefault();
-		}
-	);
+	function backToOriginBackground() {
+		var bodyRef = document.body;
+		bodyRef.classList.remove('bingwallpaper-bg-end');
+		setTimeout(function() {
+			bodyRef.style.removeProperty('background-image');
+			bodyRef.classList.remove('bingwallpaper-bg-start');
+			bingTip.innerHTML = '更换壁纸为Bing美图';
+		}, 2000);
+	}
+	bingBtn.addEventListener('click', function() {
+		document.body.style.backgroundImage
+			? backToOriginBackground()
+			: getLocalBingWallpaper();
+	});
 	//background music
 	var audioBtn = CustomizeToolBar.domList.buttonDomList.bgmControlButton;
 	var audioIcon = audioBtn.getElementsByTagName('i')[0];
@@ -246,7 +257,7 @@ CustomizeToolBar.height = 200;
 		//day theme
 		if (hour >= 6 && hour < 18) {
 			bodyRef.classList.add('body-bg-day');
-			bodyRef.style.setProperty('--widget-bg-color', 'rgb(247,247,220)');
+			bodyRef.style.setProperty('--widget-bg-color', 'rgb(250,246,220)');
 			if (theme_image) {
 				theme_image.setAttribute(
 					'src',
@@ -294,7 +305,7 @@ CustomizeToolBar.height = 200;
 		}
 		//initialize bgm
 		var au = document.createElement('audio');
-		au.src = 'https://static.littlesecret.cn/sounds/20191121103956.mp3';
+		au.src = 'https://static.littlesecret.cn/sounds/f489ef6891c845118289514633c565fe.mp3';
 		au.loop = true;
 		document.body.appendChild(au);
 	}
