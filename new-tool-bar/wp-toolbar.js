@@ -103,7 +103,7 @@ CustomizeToolBar.height = 200;
 	function getLocalBingWallpaper() {
 		var localCache = localStorage.getItem('today-bing-image');
 		if (localCache) {
-			var localObj = JSON.parse(local);
+			var localObj = JSON.parse(localCache);
 			if (new Date(localObj.time).getDate() !== new Date().getDate()) {
 				getBingWallpaper();
 			} else {

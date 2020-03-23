@@ -18,6 +18,13 @@ main {
 	flex-direction: column;
 	justify-content: space-between;
 }
+body.bingwallpaper-bg-start {
+	background-position-x: 100vw;
+}
+
+body.bingwallpaper-bg-end {
+	background-position-x: center;
+}
 #wp-toolbar-customize {
 	transition: all 0.5s linear;
 	position: fixed;
