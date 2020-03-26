@@ -118,15 +118,6 @@ if (l2d.mobile == 1) {
         showMessage(msgs[i])
     });
     jQuery(document).ready(function (jQuery) {
-        jQuery(".socials a[title='Weibo']").mouseover(function () {
-            showMessage('微博？求关注喵！')
-        });
-        jQuery(".socials a[title='GitHub']").mouseover(function () {
-            showMessage('GayHub！我是新手！')
-        });
-        jQuery(".socials a[title='Pinterest']").mouseover(function () {
-            showMessage('设计师素材，期待交流哦！')
-        });
         jQuery('.menu-main-search.menu-search-animated').mouseover(function () {
             showMessage('找不到想要的？试试搜索吧！')
         });
@@ -135,12 +126,6 @@ if (l2d.mobile == 1) {
         });
         jQuery('#branding,.icon-bread-home').mouseover(function () {
             showMessage('点它就可以回到首页啦！')
-        });
-        jQuery('#more-functions-list > div:first-child').mouseover(function () {
-            showMessage('要回到开始的地方么？')
-        });
-        jQuery('#more-functions-list > div:last-child').mouseover(function () {
-            showMessage('来，换上Bing美图当背景，美美哒')
         });
         jQuery('.waifu-tool .fa-comments').mouseover(function () {
             showMessage('猜猜我要说些什么？')

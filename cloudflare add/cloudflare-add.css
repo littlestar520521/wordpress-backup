@@ -11,7 +11,7 @@
 body.home #masthead {
 	background-image: url(https://static.littlesecret.cn/images/backgrounds/love/CBF55731-88FA-44E9-B700-F806797B3915_optimized.jpeg);
 }
-.widget-container:not(#custom_html-4) {
+.widget-container:not(#custom_html-4):not(#custom_html-6) {
 	background: var(--widget-bg-color);
 }
 .widget-frontcolor-changes {
