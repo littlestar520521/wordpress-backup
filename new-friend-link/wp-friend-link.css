@@ -1,0 +1,204 @@
+html,
+body,
+div,
+span,
+a,
+p,
+header,
+footer {
+	margin: 0;
+	padding: 0;
+	letter-spacing: 0.6px;
+	font-family: sans-serif;
+}
+a {
+	text-decoration: none;
+}
+:not(a) {
+	cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACYklEQVRYhe2WT2saQRiHf+87u6ti6GVNQ3PwElCb1j/tuYd8iORkAhURAoGo+QQ5eu0lh1pSyCUUcon3wiKUniylYBGjLfRiD4m4UVqTuDs9ZLUNtCE0uj3UH+xhZ4Z5npld3hnAycrKisA/CAFALpe75/V6wwC+FAqFzwCkWwIMgCzLuru8vPzE7/eH8vn84lDMNYHT09MZTdPi2Wz2la7roa2trdj29ja7JnBxceGzbFtXVfVOPp/fn52djZycnMTdkGAAsCxLFcwzAMDMnmw2uxcMBu+32+1Hk/45GQBs22ZVVT3DRiLSNjY29hYWFhbn5uYmKsEOkBVF0X7tICKRyWReRiKRB/Pz84+XlpYUVwWGEul0ejccDj+MRqMTkWAAkFKSEOJPk3MqlXqxGI1ORGK0A9cIAAA/XVsrxmKx6LglbrIDo7Grq6vP4/F4bJwSCgBiZiKim0zIyWSyCCDjvL8zDGNwWwFIKUlRlBuvKJlMFoUQaSKyDMOojEWAmK9UvZ2dncODg4M6gAEAEJEEAGY+9/l8nUAg0NN13YvLc+OvDy8FAIQQUIQYFRvDMN6USqXy0dFRudvtmk4zaZpGjsQgEAh0m81m5zbwkYCUkoiIAaDZbH4qFAqHrVbr9fHxcQPA+XDw2dkZ4KzYNE0bgH0b+BUBZmbTNDubm5u7vV7vbb1ebwD4Pg7IdRnWAWnbtr2+vv6s3++/r1QqH9yAA4AAQIlEIlStVj82Go1auVwuA+i6AQcuP4H0eDxfa7Xat2q1WnHglhtw4OfVS3GegQN37U74O5lppplmmv8rPwASD9QndA1UPgAAAABJRU5ErkJggg==),
+		auto;
+}
+body {
+	background: url(https://static.littlesecret.cn/images/backgrounds/anime/022e4b949a2113855a6a5f73ddbc69b8.jpg)
+		no-repeat center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+#fl-area {
+	width: 100%;
+}
+.fl-area-core {
+	max-width: 1300px;
+	margin: 0 auto;
+	position: relative;
+}
+.fl-area-content {
+	width: inherit;
+}
+.fl-links {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.fl-link {
+	width: 48%;
+	text-align: center;
+	position: relative;
+}
+.fl-link-img img {
+	max-width: 90%;
+}
+.fl-link-content {
+	width: 60%;
+	margin: 0 auto;
+	position: absolute;
+	height: 40%;
+	top: 45%;
+	left: 20%;
+	right: 20%;
+	bottom: 15%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.fl-link-content-l {
+	width: 45%;
+	height: 80%;
+	position: relative;
+	margin-right: 5%;
+}
+.fl-link-content-l a {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	border-radius: 10px;
+}
+.fl-link-content-l a::after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	opacity: 0;
+	transition: opacity 0.5s linear;
+}
+.fl-link-content-l a:hover::after {
+	opacity: 1;
+}
+.fl-link-content-l::before,
+.fl-link-content-l::after {
+	content: "";
+	display: inline-block;
+	width: 108%;
+	height: 108%;
+	position: absolute;
+	top: -4%;
+	left: -4%;
+	border: 2px dashed #add8e6;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+.fl-link-content-l::before {
+	clip-path: inset(80% 80% -4% 0);
+}
+.fl-link-content-l::after {
+	clip-path: inset(0 -4% 80% 80%);
+}
+.fl-link-content-r {
+	max-width: 50%;
+	height: 80%;
+}
+.fl-link-content-r a {
+	margin-bottom: 5px;
+	display: block;
+	font-weight: 600;
+	font-size: 1.2rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.fl-link-content-r a,
+.fl-poweredby a,
+.fl-welcome a {
+	color: #1d72cc;
+	transition: color 0.5s linear;
+}
+.fl-link-content-r a:hover,
+.fl-poweredby a:hover,
+.fl-welcome a:hover {
+	color: lightcoral;
+}
+.fl-link-content-r a:active,
+.fl-poweredby a:active,
+.fl-welcome a:active {
+	color: lightseagreen;
+}
+.fl-link-content-r p {
+	color: #333;
+	font-size: 0.9rem;
+	width: 100%;
+	overflow: auto;
+	max-height: calc(100% - 1.2rem - 5px);
+	text-align: left;
+}
+.fl-link-content-r p::selection {
+	background: #ffb5a1;
+	color: #fff;
+}
+footer {
+	text-align: center;
+	line-height: 1.5rem;
+	background: #fff;
+	margin-top: 50px;
+	padding: 20px 0;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+.site-copyright,
+.fl-poweredby,
+header {
+	color: #666;
+}
+header {
+	margin-bottom: 20px;
+	line-height: 1.5rem;
+	padding: 8px 15px;
+	background: #333;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	font-size: 0.9rem;
+	position: relative;
+	z-index: 2;
+	background: url(https://static.littlesecret.cn/images/backgrounds/minimalist/5b5fb3b2d5ee3.jpg);
+}
+@media screen and (max-width: 1090px) {
+	.fl-link {
+		width: 49%;
+	}
+	.fl-link-img img {
+		max-width: 100%;
+	}
+}
+@media screen and (max-width: 930px) and (min-width: 600px) {
+	.fl-link {
+		width: 90%;
+	}
+	.fl-link-img img {
+		width: 80%;
+	}
+}
+@media screen and (max-width: 600px) {
+	.fl-link {
+		width: 100%;
+	}
+	.fl-link-img img {
+		max-width: 100%;
+	}
+}

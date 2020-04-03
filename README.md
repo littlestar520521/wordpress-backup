@@ -16,3 +16,4 @@
 * *`extra functions`* 站点额外小功能
 * *`widgets`* WordPress自定义小工具挂件
 * *`new-tool-bar`* 右下角工具栏
+* *`new-friend-link`* 自定义友情链接页面，非WordPress自带页面，采用Cloudflare Workers部署
