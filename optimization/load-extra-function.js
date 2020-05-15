@@ -11,11 +11,13 @@ if (pattern.test(navigator.userAgent)) {
 		"style",
 		"text-align:center;position:fixed;z-index:100;top:0;left:0;opacity:1;transition:opacity 0.5s linear"
 	);
-	tip_dom.innerHTML = '<div style="display:inline-block;box-shadow:0 0 3px gray;padding:3px 5px;border-radius:5px;font-size:12px;font-family:sans-serif;line-height:20px;background:#fff;width:80%;margin-top:5px;"><span style="margin-right:5px;color:orange;"><i class="fa fa-exclamation-circle"></i></span><span>检测到移动设备，为节省资源，未启用自定义工具栏和Live2D看板娘</span></div>';
+	tip_dom.innerHTML = '<div style="display:inline-block;box-shadow:0 0 3px gray;padding:3px 5px;border-radius:5px;font-size:12px;font-family:sans-serif;line-height:20px;background:#fff;width:80%;margin-top:5px;"><span style="margin-right:5px;color:orange;"><i class="fa fa-exclamation-circle"></i></span><span>检测到移动设备，为节省资源，未启用个性化外观</span></div>';
 	document.body.appendChild(tip_dom);
 	window.onload = function () {
-		this.setTimeout((this.tip_dom.style.opacity = 0), 2000);
+		this.setTimeout(function(){this.tip_dom.style.opacity = 0}, 3000);
 	};
+	document.getElementById("day-night-theme-image").setAttribute("src", 'https://wp-cdn.littlesecret.cn/wp-content/uploads/2020/03/cropped-c5ce356fe6911ec8d799a22faa36eebb_optimized@v3-1.png');
+	document.body.style.backgroundColor='lightyellow';
 } else {
 	if (!location.href.startsWith("https://www.littlemeteor.me/wp-")) {
 		(function () {

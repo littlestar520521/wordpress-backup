@@ -17,3 +17,5 @@
 * *`widgets`* WordPress自定义小工具挂件
 * *`new-tool-bar`* 右下角工具栏
 * *`new-friend-link`* 自定义友情链接页面，非WordPress自带页面，采用Cloudflare Workers部署
+* *`optimization`* 针对移动设备优化个性化外观显示
+
