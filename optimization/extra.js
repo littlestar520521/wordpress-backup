@@ -310,6 +310,7 @@ CustomizeToolBar.height = 200;
 	au.src = opt.bgm.url;
 	au.setAttribute("data-length", opt.bgm.length);
 	au.loop = true;
+	au.preload = "metadata";
 	document.body.appendChild(au);
 	//toolbar theme
 	var tbCss = opt.toolbarTheme;
