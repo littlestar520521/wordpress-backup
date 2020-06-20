@@ -13,7 +13,7 @@
 			"text-align:center;position:fixed;z-index:100;top:0;left:0;opacity:1;transition:opacity 0.5s linear"
 		);
 		tip.innerHTML =
-			'<div style="display:inline-block;box-shadow:0 0 3px gray;padding:3px 5px;border-radius:5px;font-size:12px;font-family:sans-serif;line-height:20px;background:#fff;width:80%;margin-top:5px;"><span style="margin-right:5px;color:orange;"><i class="fa fa-exclamation-circle"></i></span><span>   </span></div>';
+			'<div style="display:inline-block;box-shadow:0 0 3px gray;padding:3px 5px;border-radius:5px;font-size:12px;font-family:sans-serif;line-height:20px;background:#fff;width:80%;margin-top:5px;"><span style="margin-right:5px;color:orange;"><i class="fa fa-exclamation-circle"></i></span><span>检测到移动设备，为节省资源，未启用个性化外观</span></div>';
 		document.body.appendChild(tip);
 		window.onload = function () {
 			setTimeout(function () {
@@ -37,12 +37,14 @@
 				var s1 = document.createElement("script");
 				s1.src =
 					"https://cdn.jsdelivr.net/gh/xb2016/kratos-pjax@0.3.6/static/js/live2d.js";
-				var s2 = document.createElement("script");
-				s2.src =
-					"https://cdn.jsdelivr.net/gh/littlestar520521/wordpress-backup/optimization/dist/extra.min.js";
-				s2.defer = true;
+				s1.onload = function () {
+					var s2 = document.createElement("script");
+					s2.src =
+						"https://cdn.jsdelivr.net/gh/littlestar520521/wordpress-backup/optimization/dist/extra.min.js";
+					s2.async = true;
+					document.body.appendChild(s2);
+				};
 				document.body.appendChild(s1);
-				document.body.appendChild(s2);
 			})
 			.catch(function (error) {
 				console.log(error.message);
