@@ -221,6 +221,7 @@ CustomizeToolBar.height = 200;
 	var audioTip = audioBtn.nextElementSibling;
 	audioBtn.addEventListener("click", function () {
 		var audioDom = document.querySelector("audio");
+		audioDom.src = audioDom.getAttribute('data-url');
 		if (audioDom.paused || audioDom.played.length === 0) {
 			audioDom.play();
 			audioIcon.setAttribute(
@@ -307,10 +308,9 @@ CustomizeToolBar.height = 200;
 	}
 	//initialize bgm
 	var au = document.createElement("audio");
-	au.src = opt.bgm.url;
 	au.setAttribute("data-length", opt.bgm.length);
+	au.setAttribute('data-url', opt.bgm.url);
 	au.loop = true;
-	au.preload = "metadata";
 	document.body.appendChild(au);
 	//toolbar theme
 	var tbCss = opt.toolbarTheme;
