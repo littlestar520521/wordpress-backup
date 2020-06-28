@@ -28,7 +28,10 @@
 			);
 		document.body.style.backgroundColor = "lightyellow";
 	} else {
-		fetch("https://www.littlemeteor.me/api/customization")
+		var cusHeader = new Headers();
+		cusHeader.append("x-token", "123456");
+		var cusInit = { headers: cusHeader };
+		fetch("https://www.littlemeteor.me/api/customization", cusInit)
 			.then(function (data) {
 				return data.json();
 			})
