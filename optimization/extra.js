@@ -153,24 +153,14 @@ CustomizeToolBar.height = 200;
 			getBingWallpaper();
 		}
 	}
-	async function getBingWallpaper() {
-		return new Promise(function (resolve, reject) {
-			switchPicAnimation();
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET", customizeThemeOpt.bingImageApi);
-			xhr.responseType = "text";
-			xhr.onload = function () {
-				if (xhr.readyState === 4 && xhr.status === 200) {
-					resolve(xhr.responseText);
-				} else {
-					reject("xhr request has no valid response");
-				}
-			};
-			xhr.onerror = function () {
-				reject("there was a network error");
-			};
-			xhr.send();
-		})
+	function getBingWallpaper() {
+		var cusHeader = new Headers();
+		cusHeader.append("x-token", "123456");
+		var cusInit = { headers: cusHeader };
+		fetch(customizeThemeOpt.bingImageApi, cusInit)
+			.then(function (data) {
+				return data.text();
+			})
 			.then(function (result) {
 				var temp_img = document.createElement("img");
 				temp_img.setAttribute("src", result);
@@ -221,7 +211,7 @@ CustomizeToolBar.height = 200;
 	var audioTip = audioBtn.nextElementSibling;
 	audioBtn.addEventListener("click", function () {
 		var audioDom = document.querySelector("audio");
-		audioDom.src = audioDom.getAttribute('data-url');
+		audioDom.src = audioDom.getAttribute("data-url");
 		if (audioDom.paused || audioDom.played.length === 0) {
 			audioDom.play();
 			audioIcon.setAttribute(
@@ -309,7 +299,7 @@ CustomizeToolBar.height = 200;
 	//initialize bgm
 	var au = document.createElement("audio");
 	au.setAttribute("data-length", opt.bgm.length);
-	au.setAttribute('data-url', opt.bgm.url);
+	au.setAttribute("data-url", opt.bgm.url);
 	au.loop = true;
 	document.body.appendChild(au);
 	//toolbar theme
