@@ -154,6 +154,7 @@ CustomizeToolBar.height = 200;
 		}
 	}
 	function getBingWallpaper() {
+		switchPicAnimation();
 		var cusHeader = new Headers();
 		cusHeader.append("x-token", "123456");
 		var cusInit = { headers: cusHeader };
