@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="wp-friend-link.js"></script>
+	</head>
+	<body>
+		<div class="fl-link">
+			<div class="fl-link-img">
+				<img src="../assets/0f7d343835c3074b0f2b22dabb731304.png" />
+			</div>
+			<div class="fl-link-content">
+				<div class="fl-link-content-l">
+					<a
+						href="{site-url}"
+						target="_blank"
+						rel="noreferrer noopener"
+						><img
+							src="{logo-url}"
+                            onload="logoLoad(this)"
+                            onerror="logoLoadError(this)"
+					/></a>
+					<div>正在加载Logo图片</div>
+				</div>
+				<div class="fl-link-content-r">
+					<a
+						href="{site-url}"
+						target="_blank"
+						rel="noreferrer noopener"
+						>{name}</a
+					>
+					<p>{description}</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

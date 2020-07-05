@@ -1,11 +1,11 @@
-html,
+a,
 body,
 div,
-span,
-a,
-p,
+footer,
 header,
-footer {
+html,
+p,
+span {
 	margin: 0;
 	padding: 0;
 	letter-spacing: 0.6px;
@@ -13,6 +13,7 @@ footer {
 }
 a {
 	text-decoration: none;
+	transition: color 0.5s linear;
 }
 :not(a) {
 	cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACYklEQVRYhe2WT2saQRiHf+87u6ti6GVNQ3PwElCb1j/tuYd8iORkAhURAoGo+QQ5eu0lh1pSyCUUcon3wiKUniylYBGjLfRiD4m4UVqTuDs9ZLUNtCE0uj3UH+xhZ4Z5npld3hnAycrKisA/CAFALpe75/V6wwC+FAqFzwCkWwIMgCzLuru8vPzE7/eH8vn84lDMNYHT09MZTdPi2Wz2la7roa2trdj29ja7JnBxceGzbFtXVfVOPp/fn52djZycnMTdkGAAsCxLFcwzAMDMnmw2uxcMBu+32+1Hk/45GQBs22ZVVT3DRiLSNjY29hYWFhbn5uYmKsEOkBVF0X7tICKRyWReRiKRB/Pz84+XlpYUVwWGEul0ejccDj+MRqMTkWAAkFKSEOJPk3MqlXqxGI1ORGK0A9cIAAA/XVsrxmKx6LglbrIDo7Grq6vP4/F4bJwSCgBiZiKim0zIyWSyCCDjvL8zDGNwWwFIKUlRlBuvKJlMFoUQaSKyDMOojEWAmK9UvZ2dncODg4M6gAEAEJEEAGY+9/l8nUAg0NN13YvLc+OvDy8FAIQQUIQYFRvDMN6USqXy0dFRudvtmk4zaZpGjsQgEAh0m81m5zbwkYCUkoiIAaDZbH4qFAqHrVbr9fHxcQPA+XDw2dkZ4KzYNE0bgH0b+BUBZmbTNDubm5u7vV7vbb1ebwD4Pg7IdRnWAWnbtr2+vv6s3++/r1QqH9yAA4AAQIlEIlStVj82Go1auVwuA+i6AQcuP4H0eDxfa7Xat2q1WnHglhtw4OfVS3GegQN37U74O5lppplmmv8rPwASD9QndA1UPgAAAABJRU5ErkJggg==),
@@ -79,6 +80,9 @@ body {
 	background-size: cover;
 	border-radius: 10px;
 }
+.fl-link-content-l a img {
+	display: none;
+}
 .fl-link-content-l a::after {
 	content: "";
 	width: 100%;
@@ -92,8 +96,40 @@ body {
 .fl-link-content-l a:hover::after {
 	opacity: 1;
 }
-.fl-link-content-l::before,
-.fl-link-content-l::after {
+.fl-link-content-l a + div {
+	color: #333;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: opacity 2.5s linear infinite;
+}
+@keyframes opacity {
+	0% {
+		opacity: 1;
+	}
+	20% {
+		opacity: 0.7;
+	}
+	40% {
+		opacity: 0.4;
+	}
+	60% {
+		opacity: 0.4;
+	}
+	80% {
+		opacity: 0.7;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.fl-link-content-l::after,
+.fl-link-content-l::before {
 	content: "";
 	display: inline-block;
 	width: 108%;
@@ -124,21 +160,18 @@ body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.fl-link-content-r a,
-.fl-poweredby a,
-.fl-welcome a {
+.fl-link-content-r a {
 	color: #1d72cc;
-	transition: color 0.5s linear;
 }
 .fl-link-content-r a:hover,
 .fl-poweredby a:hover,
 .fl-welcome a:hover {
-	color: lightcoral;
+	color: #f08080;
 }
 .fl-link-content-r a:active,
 .fl-poweredby a:active,
 .fl-welcome a:active {
-	color: lightseagreen;
+	color: #20b2aa;
 }
 .fl-link-content-r p {
 	color: #333;
@@ -155,16 +188,17 @@ body {
 footer {
 	text-align: center;
 	line-height: 1.5rem;
-	background: #fff;
 	margin-top: 50px;
 	padding: 20px 0;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
 }
-.site-copyright,
+.fl-poweredby a,
+.fl-welcome a {
+	color: #add8e6;
+}
 .fl-poweredby,
+.site-copyright,
 header {
-	color: #666;
+	color: #eee;
 }
 header {
 	margin-bottom: 20px;
@@ -176,7 +210,6 @@ header {
 	font-size: 0.9rem;
 	position: relative;
 	z-index: 2;
-	background: url(https://static.littlesecret.cn/images/backgrounds/minimalist/5b5fb3b2d5ee3.jpg);
 }
 @media screen and (max-width: 1090px) {
 	.fl-link {
