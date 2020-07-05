@@ -15,7 +15,7 @@ function logoLoadError(imgDom) {
 friendInfo.friends.forEach(function (item) {
 	var linkBlock = document.createElement("div");
 	linkBlock.setAttribute("class", "fl-link");
-	linkBlock.innerHTML = `<div class="fl-link-img"><img src="${prefix}/gh/littlestar520521/wordpress-backup/assets/0f7d343835c3074b0f2b22dabb731304.png"/></div><div class="fl-link-content"><div class="fl-link-content-l"><a href="${item.site}" target="_blank" rel="noreferrer noopener"><img src="${item.logo}" onload="logoLoad(this)" onerror="logoLoadError(this)"/></a><div>正在加载Logo图片</div></div><div class="fl-link-content-r"><a href="${item.site}" target="_blank" rel="noreferrer noopener">${item.name}</a><p>${item.description}</p></div></div>`;
+	linkBlock.innerHTML = `<div class="fl-link-img"><img src="${prefix}/gh/littlestar520521/wordpress-backup@master/assets/0f7d343835c3074b0f2b22dabb731304.png"/></div><div class="fl-link-content"><div class="fl-link-content-l"><a href="${item.site}" target="_blank" rel="noreferrer noopener"><img src="${item.logo}" onload="logoLoad(this)" onerror="logoLoadError(this)"/></a><div>正在加载Logo图片</div></div><div class="fl-link-content-r"><a href="${item.site}" target="_blank" rel="noreferrer noopener">${item.name}</a><p>${item.description}</p></div></div>`;
 	linkContainer.appendChild(linkBlock);
 });
 (function (t, h, u) {
