@@ -27,7 +27,7 @@ function logoLoadError(imgDom) {
 friendInfo.friends.forEach(function (item) {
 	var linkBlock = document.createElement("div");
 	linkBlock.setAttribute("class", "fl-link");
-	linkBlock.innerHTML = `<div class="fl-link-img"><img src="${prefix}/gh/littlestar520521/wordpress-backup@1.2/assets/0f7d343835c3074b0f2b22dabb731304.png"/></div><div class="fl-link-content"><div class="fl-link-content-l"><a href="${item.site}" target="_blank" rel="noreferrer noopener"><img src="${item.logo}" onload="logoLoad(this)" onerror="logoLoadError(this)"/></a><div>正在加载Logo图片</div></div><div class="fl-link-content-r"><a href="${item.site}" target="_blank" rel="noreferrer noopener">${item.name}</a><p>${item.description}</p></div></div>`;
+	linkBlock.innerHTML = `<div class="fl-link-img"><img src="${prefix}/gh/littlestar520521/wordpress-backup@1.2.0/assets/0f7d343835c3074b0f2b22dabb731304.png"/></div><div class="fl-link-content"><div class="fl-link-content-l"><a href="${item.site}" target="_blank" rel="noreferrer noopener"><img src="${item.logo}" onload="logoLoad(this)" onerror="logoLoadError(this)"/></a><div>正在加载Logo图片</div></div><div class="fl-link-content-r"><a href="${item.site}" target="_blank" rel="noreferrer noopener">${item.name}</a><p>${item.description}</p></div></div>`;
 	linkContainer.appendChild(linkBlock);
 });
 window.addEventListener("load", function () {
@@ -58,7 +58,7 @@ window.addEventListener("load", function () {
 			"text-align:center;position:fixed;z-index:2000;top:0;left:0;opacity:1;transition:opacity 0.5s linear;width:100%"
 		);
 		tip.innerHTML =
-			'<div style="display:inline-block;box-shadow:0 0 3px gray;padding:3px 5px;border-radius:5px;font-size:12px;font-family:sans-serif;line-height:20px;background:#fff;width:80%;margin-top:5px;"><span style="margin-right:5px;color:orange;"><i class="fa fa-exclamation-circle"></i></span><span>检测到移动设备，为节省资源，未启用个性化外观</span></div>';
+			'<div style="display:inline-block;box-shadow:0 0 3px gray;padding:3px 5px;border-radius:5px;font-size:12px;font-family:sans-serif;line-height:20px;background:#fff;width:80%;margin-top:5px;"><span>检测到移动设备，为节省资源，未启用个性化外观</span></div>';
 		document.body.appendChild(tip);
 		window.onload = function () {
 			setTimeout(function () {
@@ -74,7 +74,7 @@ window.addEventListener("load", function () {
 		s0.src = prefix + "/gh/jquery/jquery@1.12.4/dist/jquery.min.js";
 		document.body.appendChild(s0);
 		var cusHeader = new Headers();
-		cusHeader.append("x-token", "fBWgoTbk6dpqg0zuSwZiuKMYx6Sqi9QW");
+		cusHeader.append("x-token", "123456");
 		var cusInit = { headers: cusHeader };
 		fetch("https://www.littlemeteor.me/api/customization", cusInit)
 			.then(function (data) {
@@ -89,7 +89,7 @@ window.addEventListener("load", function () {
 					var s2 = document.createElement("script");
 					s2.src =
 						prefix +
-						"/gh/littlestar520521/wordpress-backup@1.2/optimization/dist/extra.min.js";
+						"/gh/littlestar520521/wordpress-backup@1.2.0/optimization/dist/extra.min.js";
 					s2.async = true;
 					document.body.appendChild(s2);
 				};
