@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 	<head>
-		<link rel="dns-prefetch" href="https://static.littlesecret.cn">
-		<link rel="dns-prefetch" href="https://wp-cdn.littlesecret.cn">
-		<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+		<link rel="dns-prefetch" href="https://static.littlesecret.cn" />
+		<link rel="dns-prefetch" href="https://wp-cdn.littlesecret.cn" />
+		<link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>伙伴链接（新） | 小流星的梦</title>
-		<meta name="google-site-verification" content="sLhXhg9v8XOBjFhFfRYPIbWVgyRwBNnChhPvUzyhdSM"/>
-		<meta name="description" content="小流星的梦自制友情链接页面，采用Cloudflare Workers部署"/>
-		<link rel="icon" href="https://wp-cdn.littlesecret.cn/wp-content/uploads/2020/03/cropped-c5ce356fe6911ec8d799a22faa36eebb_optimized@v3-32x32.png" sizes="32x32"/>
-		<link rel="icon" href="https://wp-cdn.littlesecret.cn/wp-content/uploads/2020/03/cropped-c5ce356fe6911ec8d799a22faa36eebb_optimized@v3-192x192.png" sizes="192x192">
+		<meta
+			name="google-site-verification"
+			content="sLhXhg9v8XOBjFhFfRYPIbWVgyRwBNnChhPvUzyhdSM"
+		/>
+		<meta
+			name="description"
+			content="小流星的梦自制友情链接页面，采用Cloudflare Workers部署"
+		/>
+		<link
+			rel="icon"
+			href="https://wp-cdn.littlesecret.cn/wp-content/uploads/2020/03/cropped-c5ce356fe6911ec8d799a22faa36eebb_optimized@v3-32x32.png"
+			sizes="32x32"
+		/>
+		<link
+			rel="icon"
+			href="https://wp-cdn.littlesecret.cn/wp-content/uploads/2020/03/cropped-c5ce356fe6911ec8d799a22faa36eebb_optimized@v3-192x192.png"
+			sizes="192x192"
+		/>
 		<style></style>
 	</head>
 	<body>
+		<div class="loading-masks" style="animation: l-bg 10s linear infinite;">
+			<div class="loading-mask-tip">
+				<div class="loading-text"><span>莫急喵</span></div>
+				<div class="loading-status">正在加载伙伴信息</div>
+				<div><span>Loading</span></div>
+			</div>
+		</div>
 		<header>
 			<div class="fl-welcome">
-				🎉欢迎来到新版友情链接页面，该页面为纯静态页面，仅供查看哦。要互换友情链接请访问<a
-					href="https://www.littlemeteor.me/links/"
-					target="_blank"
+				<span>
+					🎉欢迎来到新版友情链接页面，该页面为纯静态页面，仅供查看哦。要互换友情链接请访问</span
+				><a href="https://www.littlemeteor.me/links/" target="_blank"
 					>原友情链接页</a
-				>，在评论区留下你的网站链接。
+				><span>，在评论区留下你的网站链接。</span>
 			</div>
 		</header>
-		<div id="fl-area">
+		<div class="fl-area">
 			<div class="fl-area-core">
 				<div class="fl-area-content">
 					<div class="fl-links" id="link-container"></div>
@@ -33,13 +54,13 @@
 		<footer>
 			<div>
 				<div class="site-copyright">
-					<span>©2019-2020 小流星</span>
-					<span style="color: #e74c3c; margin: 0 5px;">❤</span>
-					<span>时光往复，爱你如初</span>
+					<span>©2019-2020 小流星</span
+					><span style="color: #e74c3c; margin: 0 5px;">❤</span
+					><span>时光往复，爱你如初</span>
 				</div>
 				<div class="fl-poweredby">
-					Powered by
-					<a
+					<span>Powered by </span
+					><a
 						target="_blank"
 						rel="noreferrer noopener"
 						href="https://www.cloudflare.com/zh-cn/products/cloudflare-workers/"
@@ -50,8 +71,8 @@
 			</div>
 		</footer>
 		<script>
-			const friendInfo = {};
+			window.friendInfo = {}
 		</script>
-		<script src="https://cdn.jsdelivr.net/gh/littlestar520521/wordpress-backup/new-friend-link/dist/wp-friend-link.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/littlestar520521/wordpress-backup@1.2/new-friend-link/dist/wp-friend-link.min.js"></script>
 	</body>
 </html>

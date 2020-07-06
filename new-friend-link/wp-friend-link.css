@@ -11,6 +11,10 @@ span {
 	letter-spacing: 0.6px;
 	font-family: sans-serif;
 }
+p,
+.loading-masks span {
+	color: #333;
+}
 a {
 	text-decoration: none;
 	transition: color 0.5s linear;
@@ -19,13 +23,133 @@ a {
 	cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACYklEQVRYhe2WT2saQRiHf+87u6ti6GVNQ3PwElCb1j/tuYd8iORkAhURAoGo+QQ5eu0lh1pSyCUUcon3wiKUniylYBGjLfRiD4m4UVqTuDs9ZLUNtCE0uj3UH+xhZ4Z5npld3hnAycrKisA/CAFALpe75/V6wwC+FAqFzwCkWwIMgCzLuru8vPzE7/eH8vn84lDMNYHT09MZTdPi2Wz2la7roa2trdj29ja7JnBxceGzbFtXVfVOPp/fn52djZycnMTdkGAAsCxLFcwzAMDMnmw2uxcMBu+32+1Hk/45GQBs22ZVVT3DRiLSNjY29hYWFhbn5uYmKsEOkBVF0X7tICKRyWReRiKRB/Pz84+XlpYUVwWGEul0ejccDj+MRqMTkWAAkFKSEOJPk3MqlXqxGI1ORGK0A9cIAAA/XVsrxmKx6LglbrIDo7Grq6vP4/F4bJwSCgBiZiKim0zIyWSyCCDjvL8zDGNwWwFIKUlRlBuvKJlMFoUQaSKyDMOojEWAmK9UvZ2dncODg4M6gAEAEJEEAGY+9/l8nUAg0NN13YvLc+OvDy8FAIQQUIQYFRvDMN6USqXy0dFRudvtmk4zaZpGjsQgEAh0m81m5zbwkYCUkoiIAaDZbH4qFAqHrVbr9fHxcQPA+XDw2dkZ4KzYNE0bgH0b+BUBZmbTNDubm5u7vV7vbb1ebwD4Pg7IdRnWAWnbtr2+vv6s3++/r1QqH9yAA4AAQIlEIlStVj82Go1auVwuA+i6AQcuP4H0eDxfa7Xat2q1WnHglhtw4OfVS3GegQN37U74O5lppplmmv8rPwASD9QndA1UPgAAAABJRU5ErkJggg==),
 		auto;
 }
+@keyframes l-op {
+	0% {
+		opacity: 1;
+	}
+	20% {
+		opacity: 0.7;
+	}
+	40% {
+		opacity: 0.4;
+	}
+	60% {
+		opacity: 0.4;
+	}
+	80% {
+		opacity: 0.7;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes l-bg {
+	from {
+		background-position-x: 0%;
+	}
+	to {
+		background-position-x: 100%;
+	}
+}
 body {
-	background: url(https://static.littlesecret.cn/images/backgrounds/anime/022e4b949a2113855a6a5f73ddbc69b8.jpg)
-		no-repeat center;
+	background: url(../assets/022e4b949a2113855a6a5f73ddbc69b8.jpg) no-repeat
+		center;
 	background-size: cover;
 	background-attachment: fixed;
 }
-#fl-area {
+.loading-masks {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image: linear-gradient(
+		45deg,
+		#dbd9b7 34%,
+		#b3d1c1 34%,
+		#b3d1c1 68%,
+		#a79496 68%
+	);
+	background-size: 20% 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 2.5s ease-in-out;
+}
+.loading-masks.hide {
+	height: 0;
+}
+.loading-masks.hide .loading-mask-tip {
+	display: none;
+}
+.loading-mask-tip {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.loading-mask-tip .loading-text {
+	width: 150px;
+	height: 150px;
+	background: #fff;
+	box-shadow: 0 0 10px #666;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 150px;
+	position: relative;
+}
+.loading-text span {
+	position: relative;
+	z-index: 1;
+	font-size: 0.9rem;
+}
+.loading-mask-tip .loading-status {
+	text-align: center;
+	margin-top: 5px;
+	color: #eee;
+	background: #333;
+	padding: 3px 5px;
+	border-radius: 5px;
+	font-size: 0.9rem;
+	box-shadow: 0 0 3px #808080;
+	position: relative;
+}
+.loading-status::after {
+	content: "";
+	width: 8px;
+	height: 8px;
+	background: #333;
+	position: absolute;
+	top: -4px;
+	left: calc(50% - 4px);
+	transform: rotate(45deg);
+	border-radius: 2px;
+}
+.loading-text:hover {
+	cursor: pointer;
+}
+.loading-text:hover span {
+	font-size: 1rem;
+}
+.loading-text:hover::after {
+	background: #eee;
+}
+.loading-text::after {
+	content: "";
+	width: 140px;
+	height: 140px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	border-radius: 50%;
+	box-shadow: 0 0 5px #aaa;
+	transition: all 0.5s linear;
+}
+.loading-status + div {
+	animation: l-op 2.5s linear infinite;
+	text-align: center;
+	margin-top: 15px;
+}
+.fl-area {
 	width: 100%;
 }
 .fl-area-core {
@@ -97,7 +221,6 @@ body {
 	opacity: 1;
 }
 .fl-link-content-l a + div {
-	color: #333;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -106,27 +229,6 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	animation: opacity 2.5s linear infinite;
-}
-@keyframes opacity {
-	0% {
-		opacity: 1;
-	}
-	20% {
-		opacity: 0.7;
-	}
-	40% {
-		opacity: 0.4;
-	}
-	60% {
-		opacity: 0.4;
-	}
-	80% {
-		opacity: 0.7;
-	}
-	100% {
-		opacity: 1;
-	}
 }
 .fl-link-content-l::after,
 .fl-link-content-l::before {
@@ -174,7 +276,6 @@ body {
 	color: #20b2aa;
 }
 .fl-link-content-r p {
-	color: #333;
 	font-size: 0.9rem;
 	width: 100%;
 	overflow: auto;
