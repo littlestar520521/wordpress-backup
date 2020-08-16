@@ -1,0 +1,79 @@
+<!--自定义HTML区块实现章节导航-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			#article-navigation-block {
+				position: fixed;
+				left: 0;
+				top: calc(50% - 70px);
+				letter-spacing: 1px;
+			}
+			#article-navigation-block > div:first-child {
+				background: coral;
+				color: #fff;
+				float: left;
+				border: 3px solid coral;
+				border-radius: 6px;
+				padding: 3px 5px;
+				cursor: pointer;
+				box-shadow: 0 0 5px #f08080;
+				transition: all linear 0.5s;
+			}
+			#article-navigation-block > div:first-child:hover {
+				background: #fff;
+				color: coral;
+			}
+			#article-navigation-block .article-navigation {
+				display: none;
+				float: left;
+				margin: 0 0 3px 3px;
+				padding: 3px 5px;
+				border: 3px solid coral;
+				border-radius: 6px;
+				background: #fff;
+			}
+			#article-navigation-block ul {
+				list-style: none;
+			}
+			#article-navigation-block:hover .article-navigation {
+				display: block;
+			}
+			@media (max-width: 400px) {
+				#article-navigation-block {
+					top: 100px;
+				}
+				#article-navigation-block .article-navigation {
+					float: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="article-navigation-block">
+			<div>
+				<span style="margin-right: 5px;">章节导航</span
+				><i class="fa fa-angle-right" aria-hidden="true"></i>
+			</div>
+			<div style="float: left;">
+				<div class="article-navigation column-1">
+					<ul>
+						<li><a href="#chapter1">第1-2章：混入饭店</a></li>
+						<li><a href="#chapter3">第3-5章：任务日常</a></li>
+						<li><a href="#chapter6">第6-8章：视觉障碍者</a></li>
+						<li><a href="#chapter9">第9-10章：暗号分析</a></li>
+						<li><a href="#chapter11">第11-13章：跟踪狂</a></li>
+					</ul>
+				</div>
+				<div class="article-navigation column-2">
+					<ul>
+						<li><a href="#chapter14">第14-18章：实习教师</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
