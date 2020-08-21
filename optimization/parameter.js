@@ -12,16 +12,31 @@ const opt = {
 		dayTheme: {
 			image:
 				"https://wp-cdn.bozaiq.cn/uni/images/inserts/2c9883c0c3d7b75e0a3feee8354ddd9b_optimized.png",
-			css: { "--widget-bg-color": "rgb(250,250,235)" },
+			css: {
+				//wp小工具背景色
+				"--widget-bg-color": "rgb(250,250,235)",
+				//导航栏蒙版背景色
+				"--nav-mask-bg-color": "unset",
+				//文章区域背景色
+				"--article-bg-color": "#fff",
+			},
 		},
 		nightTheme: {
 			image:
 				"https://wp-cdn.bozaiq.cn/uni/images/inserts/56f8dc7323d843977ec483846d01be74.png",
 			css: {
+				//wp小工具背景色
 				"--widget-bg-color": "rgb(81,99,123)",
+				//wp小工具字体颜色
 				"--widget-font-color": "#ffb5a1",
+				//wp小工具标题颜色
 				"--widget-title-color": "lightcoral",
+				//wp小工具列表项数字颜色
 				"--widget-list-item-color": "bisque",
+				//导航栏蒙版背景色
+				"--nav-mask-bg-color": "rgba(0,0,0,0.3)",
+				//文章区域背景色
+				"--article-bg-color": "#ccc",
 			},
 		},
 	},

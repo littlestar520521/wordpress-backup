@@ -12,12 +12,6 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 }
-body.bingwallpaper-bg-start {
-	background-position-x: 100vw;
-}
-body.bingwallpaper-bg-end {
-	background-position-x: center;
-}
 body.home #masthead {
 	height: 100vh;
 	background-repeat: no-repeat;
@@ -56,6 +50,15 @@ body.home h1.entry-title {
 #site-header-main:not(.header-fixed) #access:hover {
 	opacity: 1;
 	transform: translateX(0);
+}
+#site-header-main.header-fixed::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: inherit;
+	left: 0;
+	background: var(--nav-mask-bg-color);
+	z-index: -1;
 }
 #main article figcaption {
 	text-align: center;
