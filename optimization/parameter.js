@@ -44,5 +44,8 @@ const opt = {
 		url: "https://wp-cdn.bozaiq.cn/uni/sounds/snowdream_202051324111.mp3",
 		length: 293,
 	},
-	bingImageApi: "https://www.littlemeteor.me/api/bingwallpaper",
+	bingImageApi: {
+		url: "https://www.littlemeteor.me/api/bingwallpaper",
+		token: "123456",
+	},
 };
