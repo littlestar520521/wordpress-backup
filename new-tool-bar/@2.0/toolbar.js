@@ -207,7 +207,7 @@ const hour = new Date().getHours();
 		a = document.createElement("audio"),
 		tb = t.getDom(t.d.t);
 	Object.keys(t.d.b).forEach(function (btn) {
-		var b = t.getDom(btn);
+		var b = t.getDom(t.d.b[btn]);
 		b.addEventListener("mousedown", function () {
 			b.classList.toggle(t.c.v.iconClick);
 		});
@@ -219,7 +219,7 @@ const hour = new Date().getHours();
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	});
 	t.getDom(t.d.b.closeMenuButton).addEventListener("click", function () {
-		t.getDom(t.d.m).classList.remove(t.c.v.menuHide);
+		t.getDom(t.d.m).classList.add(t.c.v.menuHide);
 	});
 	t.getDom(t.d.a).addEventListener("click", function (e) {
 		e.stopPropagation();
