@@ -38,3 +38,13 @@ body:not(.anima-landing-page) article.hentry, body:not(.anima-landing-page) .mai
 { 
   background-color: var(--article-bg-color); 
 }
+
+<?php 
+
+  //314行
+  //a标签颜色，改为自定义
+
+?>
+a{ color: <?php echo esc_html( $anima_accent1 ) ?>; }
+
+a{ color: var(--global-link-color); }
