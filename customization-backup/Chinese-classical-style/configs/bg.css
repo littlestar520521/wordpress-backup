@@ -1,0 +1,13 @@
+/*中式古典1*/
+.body-bg-day {
+	background-image: url(/backgrounds/classical/aa3909b9d9e4f4d7e2b8047fd3f4c4db.jpg);
+}
+.body-bg-night {
+	background-image: url(/backgrounds/classical/2020-09-03-183452.jpg);
+}
+body.home #masthead {
+	background-image: url(/backgrounds/classical/6fcd879e9b4d0a6084d0306a5cf2d31e.jpg);
+}
+body {
+	--nav-bg-image: url(/backgrounds/classical/cdc51e5cf230a865c4ea6de0338623f4_1.jpg);
+}

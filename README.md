@@ -5,7 +5,7 @@
 ## 站点信息
 
 * *站点地址：* <https://www.littlemeteor.me/>
-* *站点主题：* Anima by Cryout Creations，官网链接<https://www.cryoutcreations.eu/wordpress-themes/anima>
+* *站点主题：* Anima by Cryout Creations，官网链接 <https://www.cryoutcreations.eu/wordpress-themes/anima>
 
 ## 文件夹信息
 
@@ -18,4 +18,4 @@
 * *`new-tool-bar`* 右下角工具栏
 * *`new-friend-link`* 自定义友情链接页面，非WordPress自带页面，采用Cloudflare Workers部署
 * *`optimization`* 针对移动设备优化个性化外观显示
-
+* *`customization-backup`* 外观配置备份
