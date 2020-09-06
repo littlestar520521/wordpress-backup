@@ -1,0 +1,13 @@
+/*动漫小清新1*/
+.body-bg-day {
+	background-image: url(/backgrounds/lively/751d9376-366b-442a-8067-350ac84086b8.jpg);
+}
+.body-bg-night {
+	background-image: url(/backgrounds/love/292765_001_optimized.jpg);
+}
+body.home #masthead {
+	background-image: url(/backgrounds/anime/022e4b949a2113855a6a5f73ddbc69b8.jpg);
+}
+body {
+	--nav-bg-image: url(/backgrounds/minimalist/5b5fb3b2d5ee3.jpg);
+}

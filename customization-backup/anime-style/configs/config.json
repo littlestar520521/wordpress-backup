@@ -1,0 +1,35 @@
+{
+	"config-name": "动漫小清新1",
+	"configs": {
+		"toolbarTheme": {
+			"font-color": "#ff7f50",
+			"bg-color": "#f5f5dc",
+			"border-shadow-color": "#f08080",
+			"bg-hover-color": "#ffb6c1",
+			"bg-img-css": "url(/backgrounds/love/bad27a027fff5ca54756c7da2e6cc756_optimized.png)"
+		},
+		"siteTheme": {
+			"dayTheme": {
+				"image": "/images/inserts/2c9883c0c3d7b75e0a3feee8354ddd9b_optimized.png",
+				"css": {
+					"--widget-bg-color": "#fafaeb",
+					"--nav-mask-bg-color": "unset",
+					"--article-bg-color": "#fff",
+					"--global-link-color": "#ffb5a1"
+				}
+			},
+			"nightTheme": {
+				"image": "/inserts/56f8dc7323d843977ec483846d01be74.png",
+				"css": {
+					"--widget-bg-color": "#51637b",
+					"--widget-font-color": "#ffb5a1",
+					"--widget-title-color": "#f08080",
+					"--widget-list-item-color": "#ffe4c4",
+					"--nav-mask-bg-color": "#234",
+					"--article-bg-color": "#ddd",
+					"--global-link-color": "#ffb5a1"
+				}
+			}
+		}
+	}
+}
