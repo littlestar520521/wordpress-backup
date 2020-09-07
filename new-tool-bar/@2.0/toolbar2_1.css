@@ -1,10 +1,15 @@
-body.bingwallpaper-bg-start {
+/*
+ * 最新版工具栏挂件（我自己用的版本）
+ * 包含功能：Bing壁纸、背景音乐、切换白天/夜间外观、回到顶部
+ * version：2.1
+*/
+body.customize-wallpaper-bg-start {
 	background-position-x: 100vw;
 }
-body.bingwallpaper-bg-end {
+body.customize-wallpaper-bg-end {
 	background-position-x: center;
 }
-#wp-toolbar-customize {
+[id^="customize-toolbar"] {
 	transition: all 0.5s linear;
 	position: fixed;
 	width: 200px;
@@ -28,9 +33,9 @@ body.bingwallpaper-bg-end {
 .customize-toolbar-hide-all {
 	right: -160px;
 }
-.customize-toolbar-hide-tip{
+.customize-toolbar-hide-tip {
 	transform: translateY(205px);
-	opacity: 0
+	opacity: 0;
 }
 .customize-toolbar-pic-bg-move {
 	animation: rotate-own 4s linear infinite normal;
@@ -71,8 +76,9 @@ body.bingwallpaper-bg-end {
 	}
 }
 .customize-toolbar-core {
-	background: var(--main-core-bg)
-		no-repeat center;
+	background-image: var(--tb-bg-img-css);
+	background-repeat: no-repeat;
+	background-position: center;
 	background-size: cover;
 	width: 160px;
 	height: 160px;
@@ -92,33 +98,33 @@ body.bingwallpaper-bg-end {
 	bottom: var(--tb-bottom);
 	width: 8px;
 	height: 8px;
-	background-color: var(--main-font-color);
+	background-color: var(--tb-font-color);
 	border: 1px solid #000;
 	border-radius: 50%;
 	z-index: 2;
 }
 .customize-toolbar-menu {
 	position: absolute;
-	width: 300px;
-	height: 300px;
+	width: 250px;
+	height: 250px;
 	top: -50px;
 	left: -50px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-end;
+	align-items: flex-end;
 	border-radius: 50%;
 }
 .customize-toolbar-icon-set {
 	position: inherit;
 	left: 0;
-	width: 100px;
-	height: 200px;
+	width: 150px;
+	height: 250px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 	transition: all 0.5s linear;
-	z-index: 2
+	bottom: 0;
 }
 .customize-toolbar-icon {
 	position: relative;
@@ -126,19 +132,32 @@ body.bingwallpaper-bg-end {
 }
 .customize-toolbar-icon i {
 	text-shadow: 1px 1px 1px #666;
+	cursor: pointer !important;
 }
-.customize-toolbar-icon:nth-child(2),
-.customize-toolbar-icon:nth-child(3) {
+.customize-toolbar-icon:nth-child(1) {
+	right: -60px;
+	top: 5px
+}
+.customize-toolbar-icon:nth-child(2) {
 	right: 30px;
 }
-.customize-toolbar-icon:nth-child(4) i {
-	font-weight: bold;
+.customize-toolbar-icon:nth-child(3) {
+	right: 55px;
+}
+.customize-toolbar-icon:nth-child(4) {
+	right: 55px;
+}
+.customize-toolbar-icon:nth-child(5) {
+	right: 30px;
+}
+.customize-toolbar-icon:nth-child(5) i {
+	font-weight: 700;
 }
 .customize-toolbar-icon-func,
 .customize-toolbar-icon-tip {
-	color: var(--main-font-color);
-	border-color: var(--main-border-shadow-color);
-	background: var(--main-bg-color);
+	color: var(--tb-font-color);
+	border-color: var(--tb-border-shadow-color);
+	background: var(--tb-bg-color);
 	box-sizing: border-box;
 	border-style: solid;
 	transition: all 0.5s linear;
@@ -150,13 +169,13 @@ body.bingwallpaper-bg-end {
 	border-radius: 50%;
 	line-height: 26px;
 	text-align: center;
-	box-shadow: 0 0 5px var(--main-border-shadow-color);
-	cursor: pointer!important;
+	box-shadow: 0 0 5px var(--tb-border-shadow-color);
+	cursor: pointer !important;
 }
-.customize-toolbar-icon-func:hover,
-.customize-toolbar-icon-func.customize-toolbar-icon-clicking {
-	background: var(--main-bg-hover-color);
-	color: var(--main-bg-color);
+.customize-toolbar-icon-func.customize-toolbar-icon-clicking,
+.customize-toolbar-icon-func:hover {
+	background: var(--tb-bg-hover-color);
+	color: var(--tb-bg-color);
 }
 .customize-toolbar-icon-func:hover + .customize-toolbar-icon-tip {
 	opacity: 1;
@@ -181,7 +200,7 @@ body.bingwallpaper-bg-end {
 .customize-toolbar-icon:nth-child(1) .customize-toolbar-icon-tip {
 	border-top-left-radius: 15px;
 }
-.customize-toolbar-icon:nth-child(4) .customize-toolbar-icon-tip {
+.customize-toolbar-icon:nth-child(5) .customize-toolbar-icon-tip {
 	border-bottom-left-radius: 15px;
 }
 .customize-toolbar-blank {
@@ -192,24 +211,24 @@ body.bingwallpaper-bg-end {
 	box-shadow: 0 0 10px #fff;
 	position: relative;
 }
-.customize-toolbar-blank>div{
+.customize-toolbar-blank > div {
 	width: inherit;
 	height: inherit;
 	position: inherit;
 }
-.customize-toolbar-blank-bg{
+.customize-toolbar-blank-bg {
 	font-size: 170px;
 	text-align: center;
 	line-height: 200px;
-	color: lightyellow;
+	color: #ffffe0;
 	opacity: 0.5;
 	z-index: -1;
 }
-.customize-toolbar-blank-tip{
+.customize-toolbar-blank-tip {
 	top: -200px;
 	text-align: center;
 }
-.customize-toolbar-blank-tip>div{
+.customize-toolbar-blank-tip > div {
 	display: inline-block;
 	padding: 10px;
 	background: #333;
@@ -219,8 +238,40 @@ body.bingwallpaper-bg-end {
 	box-shadow: 0 0 5px gray;
 	transition: all 1s linear;
 	position: relative;
-	z-index: 2
+	z-index: 2;
 }
 .customize-toolbar-blank:hover i {
 	animation: rotate-own 4s linear infinite normal;
+}
+.customize-toolbar-window-mask {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 150;
+	background: rgba(128, 128, 128, 0.9);
+	color: #333;
+}
+.customize-toolbar-window-mask > div {
+	position: relative;
+	top: calc(50% - 62px);
+	left: calc(50% - 100px);
+	background: #ccc;
+	width: 200px;
+	height: 124px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px #444;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+.customize-toolbar-window-mask-hide {
+	display: none;
+}
+@media (max-width: 800px) {
+	#wp-toolbar-customize {
+		display: none;
+	}
 }

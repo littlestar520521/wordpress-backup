@@ -1,340 +1,318 @@
-/**
- * 额外功能加载脚本
- */
-
-const toolbar_html = `<div class="customize-toolbar-pic"><div class="customize-toolbar-topline"></div><div class="customize-toolbar-topdot"></div><div class="customize-toolbar-core"></div></div><div class="customize-toolbar-menu"><div class="customize-toolbar-icon-set"><div class="customize-toolbar-icon" data-func="bing-wallpaper"><div class="customize-toolbar-icon-func" aria-label="change background image to today’s bing image"><i class="fa fa-paint-brush" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">更换壁纸为Bing美图</div></div><div class="customize-toolbar-icon" data-func="bgm-controller"><div class="customize-toolbar-icon-func" aria-label="play or pause the BGM"><i class="fa fa-play" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">播放背景音乐</div></div><div class="customize-toolbar-icon" data-func="back-to-top"><div class="customize-toolbar-icon-func" aria-label="go back to the top"><i class="fa fa-arrow-up" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">返回顶部</div></div><div class="customize-toolbar-icon" data-func="hide-menu"><div class="customize-toolbar-icon-func" aria-label="close the menu"><i class="fa fa-angle-right" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">隐藏菜单</div></div></div><div class="customize-toolbar-blank"><div class="customize-toolbar-blank-bg"><i class="" aria-hidden="true"></i></div><div class="customize-toolbar-blank-tip"><div class="customize-toolbar-hide-tip"><div>单击收起/展开菜单</div></div></div></div></div>`;
-const toolbar_css = `body.bingwallpaper-bg-start{background-position-x:100vw;}body.bingwallpaper-bg-end{background-position-x:center;}#wp-toolbar-customize{transition:all .5s linear;position:fixed;width:200px;height:200px;bottom:2px;right:-2px;opacity:1;--tb-bottom:162px}.customize-toolbar-icon-func.customize-toolbar-icon-clicking i{text-shadow:0 0 2px #666}.customize-toolbar-pic-move{animation:rotate-y 4s linear infinite normal;transform-origin:50% 50%}.customize-toolbar-hide{opacity:0;transform:translateX(10px)}.customize-toolbar-hide-all{right:-160px}.customize-toolbar-hide-tip{transform:translateY(205px);opacity:0}.customize-toolbar-pic-bg-move{animation:rotate-own 4s linear infinite normal;transform-origin:50% 50%}@keyframes rotate-y{0%{transform:rotateY(0)}25%{transform:rotateY(90deg)}50%{transform:rotateY(180deg)}75%{transform:rotateY(270deg)}100%{transform:rotateY(360deg)}}@keyframes rotate-own{0%{transform:rotate(0)}25%{transform:rotate(90deg)}50%{transform:rotate(180deg)}75%{transform:rotate(270deg)}100%{transform:rotate(360deg)}}.customize-toolbar-core{background-image:var(--main-bg-img-css);background-repeat:no-repeat;background-position:center;background-size:cover;width:160px;height:160px;margin:20px}.customize-toolbar-topline{width:2px;height:calc(100vh - var(--tb-bottom));background:#000;position:absolute;bottom:var(--tb-bottom);left:100px}.customize-toolbar-topdot{position:absolute;left:96.5px;bottom:var(--tb-bottom);width:8px;height:8px;background-color:var(--main-font-color);border:1px solid #000;border-radius:50%;z-index:2}.customize-toolbar-menu{position:absolute;width:300px;height:300px;top:-50px;left:-50px;display:flex;justify-content:center;align-items:center;border-radius:50%}.customize-toolbar-icon-set{position:inherit;left:0;width:100px;height:200px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;transition:all .5s linear;z-index:2}.customize-toolbar-icon{position:relative;border-radius:50%}.customize-toolbar-icon i{text-shadow:1px 1px 1px #666;cursor:pointer!important}.customize-toolbar-icon:nth-child(2),.customize-toolbar-icon:nth-child(3){right:30px}.customize-toolbar-icon:nth-child(4) i{font-weight:700}.customize-toolbar-icon-func,.customize-toolbar-icon-tip{color:var(--main-font-color);border-color:var(--main-border-shadow-color);background:var(--main-bg-color);box-sizing:border-box;border-style:solid;transition:all .5s linear}.customize-toolbar-icon-func{width:30px;height:30px;border-width:2px;border-radius:50%;line-height:26px;text-align:center;box-shadow:0 0 5px var(--main-border-shadow-color);cursor:pointer!important}.customize-toolbar-icon-func.customize-toolbar-icon-clicking,.customize-toolbar-icon-func:hover{background:var(--main-bg-hover-color);color:var(--main-bg-color)}.customize-toolbar-icon-func:hover+.customize-toolbar-icon-tip{opacity:1;right:40px}.customize-toolbar-icon-tip{right:100px;bottom:0;position:absolute;white-space:nowrap;font-size:.85rem;line-height:28px;padding:0 8px;font-family:Calibri,sans-serif;letter-spacing:.5px;border-radius:5px;border-width:1px;transform:none;box-shadow:0 0 6px #333;opacity:0}.customize-toolbar-icon:nth-child(1) .customize-toolbar-icon-tip{border-top-left-radius:15px}.customize-toolbar-icon:nth-child(4) .customize-toolbar-icon-tip{border-bottom-left-radius:15px}.customize-toolbar-blank{width:200px;height:200px;background:rgba(255,255,255,.2);border-radius:50%;box-shadow:0 0 10px #fff;position:relative}.customize-toolbar-blank>div{width:inherit;height:inherit;position:inherit}.customize-toolbar-blank-bg{font-size:170px;text-align:center;line-height:200px;color:#ffffe0;opacity:.5;z-index:-1}.customize-toolbar-blank-tip{top:-200px;text-align:center}.customize-toolbar-blank-tip>div{display:inline-block;padding:10px;background:#333;color:#eee;border-radius:10px;font-size:.85rem;box-shadow:0 0 5px gray;transition:all 1s linear;position:relative;z-index:2}.customize-toolbar-blank:hover i{animation:rotate-own 4s linear infinite normal}@media(max-width:800px){#wp-toolbar-customize{display:none}}`;
-const live2d_html = `<div class="waifu"><div class="waifu-tips"></div><canvas id="live2d" width="220" height="250" class="live2d"></canvas><div class="waifu-tool"><span class="fa fa-home"></span><span class="fa fa-comments"></span><span class="fa fa-drivers-license-o"></span><span class="fa fa-street-view"></span><span class="fa fa-camera"></span><span class="fa fa-info-circle"></span><span class="fa fa-close"></span></div></div>`;
-const live2d_css = `.waifu{position:fixed;left:0;top:0;width:230px;height:270px;z-index:500;user-select:none;-webkit-user-select:none;-ms-user-select:none;-moz-user-select:none}.waifu-tips{opacity:0;width:220px;height:70px;margin:-20px 5px;padding:5px 7px;border-radius:12px;background-color:#fff;font-size:10px;line-height:20px;color:#555;text-overflow:ellipsis;overflow:hidden;position:absolute;font-family:Raleway;text-shadow:0 0 3px #ccc;border:1px solid #ffb5a1;box-sizing:inherit}.waifu-tool{display:none;color:#aaa;top:50px;right:0;font-size:16px;position:absolute}.waifu:hover .waifu-tool{display:block}.waifu-tool span{display:block;cursor:pointer;color:#5b6c7d;line-height:22px;transition:.2s;-webkit-transition:.2s}.waifu-tool .fa-comments{font-size:19px}.waifu-tool .fa-home,.waifu-tool .fa-info-circle{font-size:20px}.waifu-tool .fa-close,.waifu-tool .fa-street-view{font-size:22px}.waifu-tool span:hover{color:#34495e}.waifu #live2d{position:absolute;cursor:move;left:3%;bottom:0}@media(max-width:800px){.l2d_xb.mh{display:none}.waifu-tips,.waifu-tool{display:none!important}.waifu #live2d{left:0}}`;
-
-function addDom(a, b, c) {
-	var dom = document.createElement("div");
-	dom.setAttribute(a, b);
-	dom.innerHTML = c;
-	document.body.appendChild(dom);
-}
-function addStyle(a) {
-	var css = document.createElement("style");
-	css.innerHTML = a;
-	document.head.appendChild(css);
-}
-addDom("id", "wp-toolbar-customize", toolbar_html);
-addDom("class", "l2d_xb mh", live2d_html);
-addStyle(toolbar_css);
-addStyle(live2d_css);
-
-window.CustomizeToolBar = window.CustomizeToolBar || {};
-CustomizeToolBar.classTokenList = {
-	visibility: {
-		toolBarHide: "customize-toolbar-hide-all",
-		menuHide: "customize-toolbar-hide",
-		iconClick: "customize-toolbar-icon-clicking",
-	},
-	rotation: {
-		picMove: "customize-toolbar-pic-move",
-		bgMove: "customize-toolbar-pic-bg-move",
-	},
-	toolBarIcon: {
-		dayBg: "fa fa-sun-o",
-		nightBg: "fa fa-star",
-		bgmPlay: "fa fa-play",
-		bgmPause: "fa fa-pause",
-	},
-};
-CustomizeToolBar.domList = {
-	toolBarDom: document.getElementById("wp-toolbar-customize"),
-	buttonDomList: {
-		bingImageButton: document.querySelector(
-			'[data-func="bing-wallpaper"]>div:first-child'
-		),
-		bgmControlButton: document.querySelector(
-			'[data-func="bgm-controller"]>div:first-child'
-		),
-		backToTopButton: document.querySelector(
-			'[data-func="back-to-top"]>div:first-child'
-		),
-		closeMenuButton: document.querySelector(
-			'[data-func="hide-menu"]>div:first-child'
-		),
-	},
-	corePicDom: document.querySelector(".customize-toolbar-core"),
-	blankAreaDom: document.querySelector(".customize-toolbar-blank"),
-	menuAreaDom: document.querySelector(".customize-toolbar-icon-set"),
-};
-CustomizeToolBar.width = 200;
-CustomizeToolBar.height = 200;
-(function () {
-	CustomizeToolBar.toggleCssClass = function (dom, className) {
-		dom.classList.toggle(className);
-	};
-	//Add mousedown and mouseup effect to all buttons
-	var buttons = CustomizeToolBar.domList.buttonDomList;
-	Object.keys(buttons).forEach(function (button) {
-		var _this = buttons[button];
-		_this.addEventListener("mousedown", function () {
-			CustomizeToolBar.toggleCssClass(
-				_this,
-				CustomizeToolBar.classTokenList.visibility.iconClick
-			);
-		});
-		_this.addEventListener("mouseup", function () {
-			CustomizeToolBar.toggleCssClass(
-				_this,
-				CustomizeToolBar.classTokenList.visibility.iconClick
-			);
-		});
-	});
-	//back to top
-	CustomizeToolBar.domList.buttonDomList.backToTopButton.addEventListener(
-		"click",
-		function () {
-			window.scrollTo({ top: 0, behavior: "smooth" });
-			//TODO: Make the scroll speed under my control
-		}
-	);
-	//close the menu
-	CustomizeToolBar.domList.buttonDomList.closeMenuButton.addEventListener(
-		"click",
-		function () {
-			CustomizeToolBar.toggleCssClass(
-				CustomizeToolBar.domList.menuAreaDom,
-				CustomizeToolBar.classTokenList.visibility.menuHide
-			);
-		}
-	);
-	CustomizeToolBar.domList.blankAreaDom.addEventListener("click", function (
-		e
-	) {
-		e.stopPropagation();
-		if (e.detail === 1) {
-			CustomizeToolBar.toggleCssClass(
-				CustomizeToolBar.domList.menuAreaDom,
-				CustomizeToolBar.classTokenList.visibility.menuHide
-			);
-		}
-		return;
-	});
-	//switch background wallpaper to bing image
-	var bingBtn = CustomizeToolBar.domList.buttonDomList.bingImageButton;
-	var bingTip = bingBtn.nextElementSibling;
-	function switchPicAnimation() {
-		CustomizeToolBar.toggleCssClass(
-			CustomizeToolBar.domList.corePicDom,
-			CustomizeToolBar.classTokenList.rotation.picMove
-		);
-	}
-	function getLocalBingWallpaper() {
-		var localCache = localStorage.getItem("today-bing-image");
-		if (localCache) {
-			var localObj = JSON.parse(localCache);
-			if (new Date(localObj.time).getDate() !== new Date().getDate()) {
-				getBingWallpaper();
-			} else {
-				//add image loading effect
-				switchPicAnimation();
-				var temp_img = document.createElement("img");
-				temp_img.setAttribute("src", localObj.url);
-				temp_img.addEventListener("load", function () {
-					var bodyRef = document.body;
-					if (!bodyRef.style.transition) {
-						bodyRef.style.transition =
-							"background-position-x 2s linear";
-					}
-					bodyRef.classList.add("bingwallpaper-bg-start");
-					setTimeout(function () {
-						bodyRef.classList.add("bingwallpaper-bg-end");
-						bodyRef.style.backgroundImage = `url(${localObj.url})`;
-						bingTip.innerHTML = "换回原来壁纸";
-						switchPicAnimation();
-					}, 2000);
-				});
-			}
-		} else {
-			getBingWallpaper();
-		}
-	}
-	function getBingWallpaper() {
-		switchPicAnimation();
-		var cusHeader = new Headers();
-		cusHeader.append("x-token", "123456");
-		var cusInit = { headers: cusHeader };
-		fetch(customizeThemeOpt.bingImageApi, cusInit)
-			.then(function (data) {
-				return data.text();
-			})
-			.then(function (result) {
-				var temp_img = document.createElement("img");
-				temp_img.setAttribute("src", result);
-				temp_img.addEventListener("load", function () {
-					var bodyRef = document.body;
-					if (!bodyRef.style.transition) {
-						bodyRef.style.transition =
-							"background-position-x 2s linear";
-					}
-					bodyRef.classList.add("bingwallpaper-bg-start");
-					setTimeout(function () {
-						bodyRef.classList.add("bingwallpaper-bg-end");
-						bodyRef.style.backgroundImage = `url(${result})`;
-						bingTip.innerHTML = "换回原来壁纸";
-						switchPicAnimation();
-					}, 2000);
-					var store = {
-						url: result,
-						time: new Date().getTime(),
-					};
-					localStorage.setItem(
-						"today-bing-image",
-						JSON.stringify(store)
+const hour = new Date().getHours();
+(function (THEME_OPT) {
+	var html_str =
+			'<div class="customize-toolbar-pic"><div class="customize-toolbar-topline"></div><div class="customize-toolbar-topdot"></div><div class="customize-toolbar-core"></div></div><div class="customize-toolbar-menu"><div class="customize-toolbar-icon-set customize-toolbar-hide"><div class="customize-toolbar-icon" data-func="bing-wallpaper"><div class="customize-toolbar-icon-func" aria-label="change background image to today’s bing image"><i class="fa fa-paint-brush" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">更换壁纸为Bing美图</div></div><div class="customize-toolbar-icon" data-func="bgm-controller"><div class="customize-toolbar-icon-func" aria-label="play or pause the BGM"><i class="fa fa-play" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">播放背景音乐</div></div><div class="customize-toolbar-icon" data-func="shift-theme"><div class="customize-toolbar-icon-func" aria-label="use day or night theme"><i class="fa fa-star" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">使用夜猫子主题</div></div><div class="customize-toolbar-icon" data-func="back-to-top"><div class="customize-toolbar-icon-func" aria-label="go back to the top"><i class="fa fa-arrow-up" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">返回顶部</div></div><div class="customize-toolbar-icon" data-func="hide-menu"><div class="customize-toolbar-icon-func" aria-label="close the menu"><i class="fa fa-angle-right" aria-hidden="false"></i></div><div class="customize-toolbar-icon-tip">隐藏菜单</div></div></div><div class="customize-toolbar-blank"><div class="customize-toolbar-blank-bg"><i class="" aria-hidden="true"></i></div><div class="customize-toolbar-blank-tip"><div class="customize-toolbar-hide-tip"><div>单击收起/展开菜单</div></div></div></div></div>',
+		css_str =
+			"body.customize-wallpaper-bg-start{background-position-x:100vw}body.customize-wallpaper-bg-end{background-position-x:center}[id^=customize-toolbar]{transition:all .5s linear;position:fixed;width:200px;height:200px;bottom:2px;right:-2px;opacity:1;--tb-bottom:162px}.customize-toolbar-icon-func.customize-toolbar-icon-clicking i{text-shadow:0 0 2px #666}.customize-toolbar-pic-move{animation:rotate-y 4s linear infinite normal;transform-origin:50% 50%}.customize-toolbar-hide{opacity:0;transform:translateX(10px)}.customize-toolbar-hide-all{right:-160px}.customize-toolbar-hide-tip{transform:translateY(205px);opacity:0}.customize-toolbar-pic-bg-move{animation:rotate-own 4s linear infinite normal;transform-origin:50% 50%}@keyframes rotate-y{0%{transform:rotateY(0)}25%{transform:rotateY(90deg)}50%{transform:rotateY(180deg)}75%{transform:rotateY(270deg)}100%{transform:rotateY(360deg)}}@keyframes rotate-own{0%{transform:rotate(0)}25%{transform:rotate(90deg)}50%{transform:rotate(180deg)}75%{transform:rotate(270deg)}100%{transform:rotate(360deg)}}.customize-toolbar-core{background-image:var(--tb-bg-img-css);background-repeat:no-repeat;background-position:center;background-size:cover;width:160px;height:160px;margin:20px}.customize-toolbar-topline{width:2px;height:calc(100vh - var(--tb-bottom));background:#000;position:absolute;bottom:var(--tb-bottom);left:100px}.customize-toolbar-topdot{position:absolute;left:96.5px;bottom:var(--tb-bottom);width:8px;height:8px;background-color:var(--tb-font-color);border:1px solid #000;border-radius:50%;z-index:2}.customize-toolbar-menu{position:absolute;width:250px;height:250px;top:-50px;left:-50px;display:flex;justify-content:flex-end;align-items:flex-end;border-radius:50%}.customize-toolbar-icon-set{position:inherit;left:0;width:150px;height:250px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;transition:all .5s linear;bottom:0}.customize-toolbar-icon{position:relative;border-radius:50%}.customize-toolbar-icon i{text-shadow:1px 1px 1px #666;cursor:pointer!important}.customize-toolbar-icon:nth-child(1){right:-60px;top:5px}.customize-toolbar-icon:nth-child(2){right:30px}.customize-toolbar-icon:nth-child(3){right:55px}.customize-toolbar-icon:nth-child(4){right:55px}.customize-toolbar-icon:nth-child(5){right:30px}.customize-toolbar-icon:nth-child(5) i{font-weight:700}.customize-toolbar-icon-func,.customize-toolbar-icon-tip{color:var(--tb-font-color);border-color:var(--tb-border-shadow-color);background:var(--tb-bg-color);box-sizing:border-box;border-style:solid;transition:all .5s linear}.customize-toolbar-icon-func{width:30px;height:30px;border-width:2px;border-radius:50%;line-height:26px;text-align:center;box-shadow:0 0 5px var(--tb-border-shadow-color);cursor:pointer!important}.customize-toolbar-icon-func.customize-toolbar-icon-clicking,.customize-toolbar-icon-func:hover{background:var(--tb-bg-hover-color);color:var(--tb-bg-color)}.customize-toolbar-icon-func:hover+.customize-toolbar-icon-tip{opacity:1;right:40px}.customize-toolbar-icon-tip{right:100px;bottom:0;position:absolute;white-space:nowrap;font-size:.85rem;line-height:28px;padding:0 8px;font-family:Calibri,sans-serif;letter-spacing:.5px;border-radius:5px;border-width:1px;transform:none;box-shadow:0 0 6px #333;opacity:0}.customize-toolbar-icon:nth-child(1) .customize-toolbar-icon-tip{border-top-left-radius:15px}.customize-toolbar-icon:nth-child(5) .customize-toolbar-icon-tip{border-bottom-left-radius:15px}.customize-toolbar-blank{width:200px;height:200px;background:rgba(255,255,255,.2);border-radius:50%;box-shadow:0 0 10px #fff;position:relative}.customize-toolbar-blank>div{width:inherit;height:inherit;position:inherit}.customize-toolbar-blank-bg{font-size:170px;text-align:center;line-height:200px;color:#ffffe0;opacity:.5;z-index:-1}.customize-toolbar-blank-tip{top:-200px;text-align:center}.customize-toolbar-blank-tip>div{display:inline-block;padding:10px;background:#333;color:#eee;border-radius:10px;font-size:.85rem;box-shadow:0 0 5px gray;transition:all 1s linear;position:relative;z-index:2}.customize-toolbar-blank:hover i{animation:rotate-own 4s linear infinite normal}.customize-toolbar-window-mask{position:fixed;height:100%;width:100%;top:0;left:0;z-index:150;background:rgba(128,128,128,.9);color:#333}.customize-toolbar-window-mask>div{position:relative;top:calc(50% - 62px);left:calc(50% - 100px);background:#ccc;width:200px;height:124px;border-radius:10px;box-shadow:0 0 10px #444;display:flex;flex-direction:column;justify-content:center;text-align:center}.customize-toolbar-window-mask-hide{display:none}@media (max-width:800px){#wp-toolbar-customize{display:none}}",
+		c = document.createElement("style");
+	c.innerHTML = css_str;
+	document.head.appendChild(c);
+	const nonce = Math.random().toString().substring(2);
+	var t = {
+		t: {
+			o: [
+				"播放背景音乐",
+				"暂停背景音乐",
+				"更换壁纸为Bing美图",
+				"换回原来壁纸",
+				"使用夜猫子外观",
+				"使用日间外观",
+			],
+			e: ["图像加载失败", "获取图像地址失败"],
+		},
+		c: {
+			v: {
+				toolBarHide: "customize-toolbar-hide-all",
+				menuHide: "customize-toolbar-hide",
+				iconClick: "customize-toolbar-icon-clicking",
+				maskHide: "customize-toolbar-window-mask-hide",
+			},
+			r: {
+				picMove: "customize-toolbar-pic-move",
+				bgMove: "customize-toolbar-pic-bg-move",
+			},
+			i: {
+				dayBg: "fa fa-sun-o",
+				nightBg: "fa fa-star",
+				bgmPlay: "fa fa-play",
+				bgmPause: "fa fa-pause",
+			},
+			w: {
+				start: "customize-wallpaper-bg-start",
+				end: "customize-wallpaper-bg-end",
+			},
+			t: { day: "body-bg-day", night: "body-bg-night" },
+		},
+		d: {
+			t: "customize-toolbar-" + nonce,
+			s: "customize-toolbar-bgm-" + nonce,
+			b: {
+				bingImageButton: '[data-func="bing-wallpaper"]>div:first-child',
+				bgmControlButton:
+					'[data-func="bgm-controller"]>div:first-child',
+				backToTopButton: '[data-func="back-to-top"]>div:first-child',
+				closeMenuButton: '[data-func="hide-menu"]>div:first-child',
+				shiftThemeButton: '[data-func="shift-theme"]>div:first-child',
+			},
+			p: ".customize-toolbar-core",
+			a: ".customize-toolbar-blank",
+			m: ".customize-toolbar-icon-set",
+			e: ".customize-toolbar-blank-tip>div",
+		},
+		getDom(s, id = false) {
+			return id ? document.getElementById(s) : document.querySelector(s);
+		},
+		toggleCssClass(d, c, r) {
+			r ? d.classList.remove(c) : d.classList.add(c);
+		},
+		popErrorLog(t1, t2) {
+			var l = this.getDom(".customize-toolbar-blank-tip>div");
+			l.innerHTML = t1;
+			l.classList.remove("customize-toolbar-hide-tip");
+			this.switchPicAnimation(true);
+			console.error(t2);
+			setTimeout(function () {
+				l.classList.add("customize-toolbar-hide-tip");
+			}, 3e3);
+		},
+		switchPicAnimation(r) {
+			this.toggleCssClass(this.getDom(this.d.p), this.c.r.picMove, r);
+		},
+		setSiteTheme(t, b) {
+			if (t) {
+				Object.keys(THEME_OPT.siteTheme.dayTheme.css).forEach(function (
+					cssKey
+				) {
+					b.style.setProperty(
+						cssKey,
+						THEME_OPT.siteTheme.dayTheme.css[cssKey]
 					);
 				});
-			})
-			.catch(function (err) {
-				console.log(`Get image failed for the error '${err}'`);
+				b.classList.remove(this.c.t.night);
+				b.classList.add(this.c.t.day);
+			} else {
+				Object.keys(THEME_OPT.siteTheme.nightTheme.css).forEach(
+					function (cssKey) {
+						b.style.setProperty(
+							cssKey,
+							THEME_OPT.siteTheme.nightTheme.css[cssKey]
+						);
+					}
+				);
+				b.classList.remove(this.c.t.day);
+				b.classList.add(this.c.t.night);
+			}
+		},
+		setBingWallpaper(u) {
+			var temp = document.createElement("img"),
+				_this = this;
+			temp.setAttribute("src", u);
+			temp.addEventListener("load", function () {
+				var b = document.body;
+				if (!b.style.transition) {
+					b.style.transition = "background-position-x 2s linear";
+				}
+				b.classList.add(_this.c.w.start);
+				setTimeout(function () {
+					b.classList.add(_this.c.w.end);
+					b.style.backgroundImage = `url(${u})`;
+					_this.getDom(
+						_this.d.b.bingImageButton
+					).nextElementSibling.innerHTML = _this.t.o[3];
+					_this.switchPicAnimation(true);
+				}, 2e3);
 			});
-	}
-	function backToOriginBackground() {
-		var bodyRef = document.body;
-		bodyRef.classList.remove("bingwallpaper-bg-end");
-		setTimeout(function () {
-			bodyRef.style.removeProperty("background-image");
-			bodyRef.classList.remove("bingwallpaper-bg-start");
-			bingTip.innerHTML = "更换壁纸为Bing美图";
-		}, 2000);
-	}
-	bingBtn.addEventListener("click", function () {
+			temp.addEventListener("error", function () {
+				_this.popErrorLog(_this.t.e[0], "load image failed");
+			});
+		},
+		getBingWallpaperFromCache() {
+			var localCache = localStorage.getItem("today-bing-image");
+			if (localCache) {
+				var localObj = JSON.parse(localCache);
+				if (
+					new Date(localObj.time).getDate() !== new Date().getDate()
+				) {
+					this.getBingWallpaperFromServer();
+				} else {
+					this.switchPicAnimation(false);
+					this.setBingWallpaper(localObj.url, true);
+				}
+			} else {
+				this.getBingWallpaperFromServer();
+			}
+		},
+		getBingWallpaperFromServer() {
+			this.switchPicAnimation(false);
+			var cusHeader = new Headers();
+			cusHeader.append("x-token", THEME_OPT.bingImageApi.token);
+			var cusInit = { headers: cusHeader },
+				_this = this;
+			fetch(THEME_OPT.bingImageApi.url, cusInit)
+				.then(function (d) {
+					if (d.status !== 200) {
+						throw new Error("get image url failed");
+					}
+					return d.text();
+				})
+				.then(function (r) {
+					_this.setBingWallpaper(r, true);
+					return r;
+				})
+				.then(function (d) {
+					var s = { url: d, time: new Date().getTime() };
+					localStorage.setItem("today-bing-image", JSON.stringify(s));
+				})
+				.catch(function (e) {
+					_this.popErrorLog(_this.t.e[1], e);
+				});
+		},
+		backToOriginBackground() {
+			var b = document.body,
+				_this = this;
+			b.classList.remove(_this.c.w.end);
+			setTimeout(function () {
+				b.style.removeProperty("background-image");
+				b.classList.remove(_this.c.w.start);
+				_this.getDom(
+					_this.d.b.bingImageButton
+				).nextElementSibling.innerHTML = _this.t.o[2];
+			}, 2e3);
+		},
+	};
+	var h = document.createElement("div");
+	h.setAttribute("id", t.d.t);
+	h.innerHTML = html_str;
+	document.body.appendChild(h);
+	var au = t.getDom(t.d.b.bgmControlButton),
+		tb = t.getDom(t.d.t, true),
+		s = t.getDom(t.d.b.shiftThemeButton),
+		a = document.createElement("audio");
+	Object.keys(t.d.b).forEach(function (btn) {
+		var b = t.getDom(t.d.b[btn]);
+		b.addEventListener("mousedown", function () {
+			b.classList.toggle(t.c.v.iconClick);
+		});
+		b.addEventListener("mouseup", function () {
+			b.classList.toggle(t.c.v.iconClick);
+		});
+	});
+	t.getDom(t.d.b.backToTopButton).addEventListener("click", function () {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	});
+	t.getDom(t.d.b.closeMenuButton).addEventListener("click", function () {
+		t.getDom(t.d.m).classList.add(t.c.v.menuHide);
+	});
+	t.getDom(t.d.b.bingImageButton).addEventListener("click", function () {
 		document.body.style.backgroundImage
-			? backToOriginBackground()
-			: getLocalBingWallpaper();
+			? t.backToOriginBackground()
+			: t.getBingWallpaperFromCache();
 	});
-	//background music
-	var audioBtn = CustomizeToolBar.domList.buttonDomList.bgmControlButton;
-	var audioIcon = audioBtn.getElementsByTagName("i")[0];
-	var audioTip = audioBtn.nextElementSibling;
-	audioBtn.addEventListener("click", function () {
-		var audioDom = document.querySelector("audio");
-		if (!audioDom.src) {
-			audioDom.src = audioDom.getAttribute("data-url");
-		}
-		if (audioDom.paused || audioDom.played.length === 0) {
-			audioDom.play();
-			audioIcon.setAttribute(
-				"class",
-				CustomizeToolBar.classTokenList.toolBarIcon.bgmPause
-			);
-			audioTip.innerHTML = "暂停背景音乐";
+	t.getDom(t.d.a).addEventListener("click", function (e) {
+		e.stopPropagation();
+		t.getDom(t.d.m).classList.toggle(t.c.v.menuHide);
+	});
+	window.addEventListener("load", function () {
+		t.getDom(t.d.m).classList.toggle(t.c.v.menuHide);
+		var l = t.getDom(".customize-toolbar-blank-tip>div");
+		l.classList.remove("customize-toolbar-hide-tip");
+		setTimeout(function () {
+			l.classList.add("customize-toolbar-hide-tip");
+		}, 1e4);
+	});
+	s.addEventListener("click", function () {
+		var b = document.body;
+		if (b.classList.contains(t.c.t.day)) {
+			t.setSiteTheme(0, b);
+			s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.dayBg);
+			s.nextElementSibling.innerHTML = t.t.o[5];
+			localStorage.setItem("preferred-theme", "n");
 		} else {
-			audioDom.pause();
-			audioIcon.setAttribute(
-				"class",
-				CustomizeToolBar.classTokenList.toolBarIcon.bgmPlay
-			);
-			audioTip.innerHTML = "播放背景音乐";
+			t.setSiteTheme(1, b);
+			s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.nightBg);
+			s.nextElementSibling.innerHTML = t.t.o[4];
+			localStorage.setItem("preferred-theme", "d");
 		}
 	});
-})();
-(function (opt) {
-	var hour = new Date().getHours();
-	var dom = document.getElementById("time-period-greeting");
-	if (dom) {
-		var text;
-		switch (true) {
-			case hour >= 0 && hour < 6:
-				text = "凌晨好";
-				break;
-			case hour >= 6 && hour <= 7:
-				text = "早安";
-				break;
-			case hour > 7 && hour < 11:
-				text = "上午好";
-				break;
-			case hour >= 11 && hour < 13:
-				text = "中午好";
-				break;
-			case hour >= 13 && hour < 18:
-				text = "下午好";
-				break;
-			case hour >= 18 && hour <= 21:
-				text = "晚上好";
-				break;
-			case hour >= 22 && hour <= 23:
-				text = "晚安";
-				break;
+	au.addEventListener("click", function () {
+		var d = document.querySelector("audio");
+		if (!d.src) {
+			d.src = d.getAttribute("data-url");
 		}
-		document.getElementById("time-period-greeting").innerHTML =
-			text + "，亲爱的访客";
-	}
-	var theme_image = document.getElementById("day-night-theme-image");
-	var bodyRef = document.body;
-	//day theme
-	if (hour >= 6 && hour < 18) {
-		bodyRef.classList.add("body-bg-day");
-		var dayCss = opt.siteTheme.dayTheme.css;
-		Object.keys(dayCss).forEach(function (cssKey) {
-			bodyRef.style.setProperty(cssKey, dayCss[cssKey]);
-		});
-		if (theme_image) {
-			theme_image.setAttribute("src", opt.siteTheme.dayTheme.image);
-		}
-		CustomizeToolBar.domList.blankAreaDom
-			.getElementsByTagName("i")[0]
-			.setAttribute(
+		if (d.paused || d.played.length === 0) {
+			d.play();
+			au.getElementsByTagName("i")[0].setAttribute(
 				"class",
-				CustomizeToolBar.classTokenList.toolBarIcon.dayBg
+				t.c.i.bgmPause
 			);
-	}
-	//night theme
-	else {
-		bodyRef.classList.add("body-bg-night");
-		var nightCss = opt.siteTheme.nightTheme.css;
-		Object.keys(nightCss).forEach(function (cssKey) {
-			bodyRef.style.setProperty(cssKey, nightCss[cssKey]);
-		});
-		if (theme_image) {
-			theme_image.setAttribute("src", opt.siteTheme.nightTheme.image);
-		}
-		CustomizeToolBar.domList.blankAreaDom
-			.getElementsByTagName("i")[0]
-			.setAttribute(
+			au.nextElementSibling.innerHTML = t.t.o[1];
+		} else {
+			d.pause();
+			au.getElementsByTagName("i")[0].setAttribute(
 				"class",
-				CustomizeToolBar.classTokenList.toolBarIcon.nightBg
+				t.c.i.bgmPlay
 			);
-	}
-	//initialize bgm
-	var au = document.createElement("audio");
-	au.setAttribute("data-length", opt.bgm.length);
-	au.setAttribute("data-url", opt.bgm.url);
-	au.loop = true;
-	document.body.appendChild(au);
-	//toolbar theme
-	var tbCss = opt.toolbarTheme;
-	var tbDom = CustomizeToolBar.domList.toolBarDom;
-	Object.keys(tbCss).forEach(function (cssKey) {
-		tbDom.style.setProperty("--main-" + cssKey, tbCss[cssKey]);
+			au.nextElementSibling.innerHTML = t.t.o[0];
+		}
 	});
-})(customizeThemeOpt);
-window.addEventListener("load", function () {
-	CustomizeToolBar.toggleCssClass(
-		CustomizeToolBar.domList.menuAreaDom,
-		CustomizeToolBar.classTokenList.visibility.menuHide
-	);
-	var tip = document.querySelector(".customize-toolbar-blank-tip>div");
-	tip.classList.remove("customize-toolbar-hide-tip");
-	setTimeout(function () {
-		tip.classList.add("customize-toolbar-hide-tip");
-	}, 10000);
-});
-
-/*live2d动画自定义提示语*/
-
+	a.setAttribute("data-length", THEME_OPT.bgm.length);
+	a.setAttribute("data-url", THEME_OPT.bgm.url);
+	a.setAttribute("id", t.d.s);
+	a.loop = true;
+	document.body.appendChild(a);
+	Object.keys(THEME_OPT.toolbarTheme).forEach(function (cssKey) {
+		tb.style.setProperty("--tb-" + cssKey, THEME_OPT.toolbarTheme[cssKey]);
+	});
+	if (hour >= 6 && hour <= 18) {
+		var pt = localStorage.getItem("preferred-theme");
+		pt == "n"
+			? t.setSiteTheme(0, document.body)
+			: t.setSiteTheme(1, document.body);
+		t.getDom("day-night-theme-image", true).setAttribute(
+			"src",
+			THEME_OPT.siteTheme.dayTheme.image
+		);
+		t.getDom(t.d.a)
+			.getElementsByTagName("i")[0]
+			.setAttribute("class", t.c.i.dayBg);
+		s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.nightBg);
+		s.nextElementSibling.innerHTML = t.t.o[4];
+	} else {
+		var pt = localStorage.getItem("preferred-theme");
+		pt == "d"
+			? t.setSiteTheme(1, document.body)
+			: t.setSiteTheme(0, document.body);
+		t.getDom("day-night-theme-image", true).setAttribute(
+			"src",
+			THEME_OPT.siteTheme.nightTheme.image
+		);
+		t.getDom(t.d.a)
+			.getElementsByTagName("i")[0]
+			.setAttribute("class", t.c.i.nightBg);
+		s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.dayBg);
+		s.nextElementSibling.innerHTML = t.t.o[5];
+	}
+})(window.customizeThemeOpt);
 var l2d = {
-	xb: "https://www.littlemeteor.me/wp-content/plugins/poster-girl-l2d-2233",
-	move: "",
-	mobile: "1",
-	r18: "",
-};
-
+		xb:
+			"https://www.littlemeteor.me/wp-content/plugins/poster-girl-l2d-2233",
+		move: "",
+		mobile: "1",
+		r18: "",
+	},
+	l2d_html =
+		'<div class="waifu"><div class="waifu-tips"></div><canvas id="live2d" width="220" height="250" class="live2d"></canvas><div class="waifu-tool"><span class="fa fa-home"></span><span class="fa fa-comments"></span><span class="fa fa-drivers-license-o"></span><span class="fa fa-street-view"></span><span class="fa fa-camera"></span><span class="fa fa-info-circle"></span><span class="fa fa-close"></span></div></div>',
+	l2d_css =
+		".waifu{position:fixed;left:0;top:0;width:230px;height:270px;z-index:500;user-select:none;-webkit-user-select:none;-ms-user-select:none;-moz-user-select:none}.waifu-tips{opacity:0;width:220px;height:70px;margin:-20px 5px;padding:5px 7px;border-radius:12px;background-color:#fff;font-size:10px;line-height:20px;color:#555;text-overflow:ellipsis;overflow:hidden;position:absolute;font-family:Raleway;text-shadow:0 0 3px #ccc;border:1px solid #ffb5a1;box-sizing:inherit}.waifu-tool{display:none;color:#aaa;top:50px;right:0;font-size:16px;position:absolute}.waifu:hover .waifu-tool{display:block}.waifu-tool span{display:block;cursor:pointer;color:#5b6c7d;line-height:22px;transition:.2s;-webkit-transition:.2s}.waifu-tool .fa-comments{font-size:19px}.waifu-tool .fa-home,.waifu-tool .fa-info-circle{font-size:20px}.waifu-tool .fa-close,.waifu-tool .fa-street-view{font-size:22px}.waifu-tool span:hover{color:#34495e}.waifu #live2d{position:absolute;cursor:move;left:3%;bottom:0}@media(max-width:800px){.l2d_xb.mh{display:none}.waifu-tips,.waifu-tool{display:none!important}.waifu #live2d{left:0}}",
+	lc = document.createElement("style"),
+	lh = document.createElement("div");
+lc.innerHTML = l2d_css;
+lh.innerHTML = l2d_html;
+lh.setAttribute("class", "l2d_xb mh");
+document.head.appendChild(lc);
+document.body.appendChild(lh);
 jQuery(document).on("copy", function () {
-	showMessage("你都复制了些什么呀，转载要记得加上出处哦", 8000);
+	showMessage("你都复制了些什么呀，转载要记得加上出处哦", 8e3);
 });
 jQuery(".waifu-tool .fa-home").click(function () {
 	window.location =
@@ -348,10 +326,10 @@ jQuery(".waifu-tool .fa-drivers-license-o").click(function () {
 	);
 	if (model_p === 22) {
 		model_p = 33;
-		showMessage("33援交有点累了，现在该我上场了", 4000);
+		showMessage("33援交有点累了，现在该我上场了", 4e3);
 	} else {
 		model_p = 22;
-		showMessage("我又回来了！", 4000);
+		showMessage("我又回来了！", 4e3);
 	}
 });
 jQuery(".waifu-tool .fa-comments").click(function () {
@@ -368,59 +346,56 @@ jQuery(".waifu-tool .fa-street-view").click(function () {
 			"live2d",
 			l2d.xb + "/model/api.php?p=22&model=rand&r18=" + l2d.r18
 		);
-	showMessage("我的新衣服好看嘛", 4000);
+	showMessage("我的新衣服好看嘛", 4e3);
 });
 jQuery(".waifu-tool .fa-info-circle").click(function () {
 	window.open("https://moedog.org/");
 });
 jQuery(".waifu-tool .fa-close").click(function () {
 	sessionStorage.setItem("waifu-dsiplay", "none");
-	showMessage("愿你有一天能与重要的人重逢", 2000);
+	showMessage("愿你有一天能与重要的人重逢", 2e3);
 	window.setTimeout(function () {
 		jQuery(".waifu").hide();
-	}, 1000);
+	}, 1e3);
 });
 jQuery(".waifu-tool .fa-camera").click(function () {
-	showMessage("照好了嘛，是不是很可爱呢？", 8000);
+	showMessage("照好了嘛，是不是很可爱呢？", 8e3);
 	window.Live2D.captureName = "pic.png";
 	window.Live2D.captureFrame = true;
 });
 loadlive2d("live2d", l2d.xb + "/model/api.php?p=33&model=rand&r18=" + l2d.r18);
-
 function showHitokoto() {
 	jQuery.post("https://api.fczbl.vip/hitokoto/", function (result) {
 		showMessage(result);
 	});
 }
-
 function showMessage(a, b) {
-	if (b == null) b = 10000;
+	if (b == null) b = 1e4;
 	jQuery(".waifu-tips").hide().stop();
 	jQuery(".waifu-tips").html(a);
 	jQuery(".waifu-tips").fadeTo("10", 1);
 	jQuery(".waifu-tips").fadeOut(b);
 }
 (function () {
-	var text;
-	var SiteIndexUrl =
-		window.location.protocol + "//" + window.location.hostname + "/";
+	var text,
+		SiteIndexUrl =
+			window.location.protocol + "//" + window.location.hostname + "/";
 	if (window.location.href == SiteIndexUrl) {
-		var now = new Date().getHours();
-		if (now > 23 || now <= 5) {
+		if (hour > 23 || hour <= 5) {
 			text = "你是夜猫子呀？这么晚还不睡觉，明天起的来嘛";
-		} else if (now > 5 && now <= 7) {
+		} else if (hour > 5 && hour <= 7) {
 			text = "早上好！一日之计在于晨，今天又是元气满满的一天";
-		} else if (now > 7 && now <= 11) {
+		} else if (hour > 7 && hour <= 11) {
 			text = "上午好！工作顺利嘛，不要久坐，多起来走动走动哦！";
-		} else if (now > 11 && now <= 14) {
+		} else if (hour > 11 && hour <= 14) {
 			text = "中午了，工作了一个上午，现在是午餐时间！";
-		} else if (now > 14 && now <= 17) {
+		} else if (hour > 14 && hour <= 17) {
 			text = "午后很容易犯困呢，今天的运动目标完成了吗？";
-		} else if (now > 17 && now <= 19) {
+		} else if (hour > 17 && hour <= 19) {
 			text = "傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~";
-		} else if (now > 19 && now <= 21) {
+		} else if (hour > 19 && hour <= 21) {
 			text = "晚上好，今天过得怎么样？";
-		} else if (now > 21 && now <= 23) {
+		} else if (hour > 21 && hour <= 23) {
 			text = "已经这么晚了呀，早点休息吧，晚安~";
 		} else {
 			text = "嗨~ 快来逗我玩吧！";
@@ -464,21 +439,11 @@ function showMessage(a, b) {
 		}
 	}
 	if (l2d.mobile == 1) {
-		jQuery(".waifu").animate(
-			{
-				top: jQuery(window).height() - 250,
-			},
-			800
-		);
+		jQuery(".waifu").animate({ top: jQuery(window).height() - 250 }, 800);
 	} else {
-		jQuery(".waifu").animate(
-			{
-				top: jQuery(window).height() - 150,
-			},
-			800
-		);
+		jQuery(".waifu").animate({ top: jQuery(window).height() - 150 }, 800);
 	}
-	showMessage(text, 8000);
+	showMessage(text, 8e3);
 })();
 if (l2d.mobile == 1) {
 	jQuery(window).resize(function () {
@@ -589,10 +554,7 @@ if (l2d.mobile == 1) {
 						130,
 					left: jQuery("#author").offset().left - 200,
 				},
-				{
-					queue: false,
-					duration: 800,
-				}
+				{ queue: false, duration: 800 }
 			);
 		});
 		jQuery(document).on("click", "#email", function () {
@@ -605,10 +567,7 @@ if (l2d.mobile == 1) {
 						130,
 					left: jQuery("#email").offset().left - 200,
 				},
-				{
-					queue: false,
-					duration: 800,
-				}
+				{ queue: false, duration: 800 }
 			);
 		});
 		jQuery(document).on("click", "#url", function () {
@@ -621,10 +580,7 @@ if (l2d.mobile == 1) {
 						130,
 					left: jQuery("#url").offset().left - 200,
 				},
-				{
-					queue: false,
-					duration: 800,
-				}
+				{ queue: false, duration: 800 }
 			);
 		});
 		jQuery(document).on("click", "#comment", function () {
@@ -637,10 +593,7 @@ if (l2d.mobile == 1) {
 						90,
 					left: jQuery("#comment").offset().left - 170,
 				},
-				{
-					queue: false,
-					duration: 800,
-				}
+				{ queue: false, duration: 800 }
 			);
 		});
 	});
@@ -688,17 +641,14 @@ if (l2d.mobile == 1) {
 								240 -
 								((window.innerHeight - 240) / 2) * (1 + s[i2]),
 						},
-						{
-							duration: 2000,
-							complete: showMessage(msgs[i]),
-						}
+						{ duration: 2e3, complete: showMessage(msgs[i]) }
 					);
 				}
-			}, 40000);
+			}, 4e4);
 		} else {
 			window.setInterval(function () {
 				showMessage(showHitokoto());
-			}, 45000);
+			}, 45e3);
 		}
 		var stat_click = 0;
 		jQuery("#live2d").click(function () {
@@ -755,10 +705,7 @@ if (l2d.mobile == 1) {
 							240 -
 							((window.innerHeight - 240) / 2) * (1 - s[i2]),
 					},
-					{
-						duration: 500,
-						complete: showMessage(msgs[i]),
-					}
+					{ duration: 500, complete: showMessage(msgs[i]) }
 				);
 			} else {
 				ismove = false;
