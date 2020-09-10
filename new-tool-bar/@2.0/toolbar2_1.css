@@ -9,7 +9,7 @@ body.customize-wallpaper-bg-start {
 body.customize-wallpaper-bg-end {
 	background-position-x: center;
 }
-[id^="customize-toolbar"] {
+div[id^="customize-toolbar"] {
 	transition: all 0.5s linear;
 	position: fixed;
 	width: 200px;
@@ -136,7 +136,7 @@ body.customize-wallpaper-bg-end {
 }
 .customize-toolbar-icon:nth-child(1) {
 	right: -60px;
-	top: 5px
+	top: 5px;
 }
 .customize-toolbar-icon:nth-child(2) {
 	right: 30px;
@@ -271,7 +271,7 @@ body.customize-wallpaper-bg-end {
 	display: none;
 }
 @media (max-width: 800px) {
-	#wp-toolbar-customize {
+	div[id^="customize-toolbar"] {
 		display: none;
 	}
 }
