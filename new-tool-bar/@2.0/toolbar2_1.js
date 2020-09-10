@@ -440,6 +440,8 @@ if (hour >= 6 && hour <= 18) {
 		s.nextElementSibling.innerHTML = t.t.o[5];
 	} else {
 		t.setSiteTheme(1, document.body);
+		s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.nightBgAndIcon);
+		s.nextElementSibling.innerHTML = t.t.o[4];
 	}
 	t.getDom("day-night-theme-image", true).setAttribute(
 		"src",
@@ -448,8 +450,6 @@ if (hour >= 6 && hour <= 18) {
 	t.getDom(t.d.a)
 		.getElementsByTagName("i")[0]
 		.setAttribute("class", t.c.i.dayBg);
-	s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.nightBgAndIcon);
-	s.nextElementSibling.innerHTML = t.t.o[4];
 }
 //night time
 else {
@@ -459,6 +459,8 @@ else {
 		s.nextElementSibling.innerHTML = t.t.o[4];
 	} else {
 		t.setSiteTheme(0, document.body);
+		s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.dayIcon);
+		s.nextElementSibling.innerHTML = t.t.o[5];
 	}
 	t.getDom("day-night-theme-image", true).setAttribute(
 		"src",
@@ -467,6 +469,4 @@ else {
 	t.getDom(t.d.a)
 		.getElementsByTagName("i")[0]
 		.setAttribute("class", t.c.i.nightBgAndIcon);
-	s.getElementsByTagName("i")[0].setAttribute("class", t.c.i.dayIcon);
-	s.nextElementSibling.innerHTML = t.t.o[5];
 }
