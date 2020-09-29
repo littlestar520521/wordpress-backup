@@ -3,14 +3,28 @@
 * 由Cloudflare app额外添加
 */
 .body-bg-day {
-	background-image: url(https://static.littlesecret.cn/images/backgrounds/love/t0143fee64924dde337_optimized.jpg);
+	background-image: url(https://wp-cdn.bozaiq.cn/uni/images/backgrounds/classical/e7fe136e453e68f2e25993593199be10.jpg);
 }
 .body-bg-night {
-	background-image: url(https://static.littlesecret.cn/images/backgrounds/love/292765_001_optimized.jpg);
+	background-image: url(https://wp-cdn.bozaiq.cn/uni/images/backgrounds/classical/2020-09-03-183452.jpg);
 }
 body.home #masthead {
-	background-image: url(https://static.littlesecret.cn/images/backgrounds/love/CBF55731-88FA-44E9-B700-F806797B3915_optimized.jpeg);
+	background-image: url(https://wp-cdn.bozaiq.cn/uni/images/backgrounds/classical/7667d0ab04c6676e712ac38652341f00.jpg);
 }
 body {
-	--nav-bg-image: url(https://static.littlesecret.cn/images/backgrounds/minimalist/5b5fb3b2d5ee3.jpg);
+	--nav-bg-image: url(https://wp-cdn.bozaiq.cn/uni/images/backgrounds/classical/e7fe136e453e68f2e25993593199be10.jpg)center;
+}
+body.body-bg-night #masthead::before,
+body.body-bg-night .header-image::before {
+	width: 100%;
+	height: inherit;
+	content: "";
+	position: absolute;
+	background: rgba(0, 0, 0, 0.3);
+}
+body.body-bg-night article p code {
+	background: unset;
+	font-style: italic;
+	font-weight: 700;
+	color: #777;
 }

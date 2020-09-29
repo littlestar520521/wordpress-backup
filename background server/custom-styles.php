@@ -19,7 +19,7 @@
                       
 #site-header-main, .menu-search-animated .searchform input[type="search"], #access .menu-search-animated .searchform, .anima-over-menu .header-fixed#site-header-main
 {
-  background-image:var(--nav-bg-image)
+  background:var(--nav-bg-image)
 }
 
 
